@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:odinlab/pages/onboarding_screen/front_screen.dart';
+import 'package:odinlab/pages/onboarding_screen/onboarding_screen.dart';
 
 void main() {
   runApp(const OdinLab());
@@ -9,6 +11,15 @@ class OdinLab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Odin Lab",
+      theme: ThemeData(
+        fontFamily: "Inter",
+      ),
+      home: const Scaffold(
+        body: FrontScreen(),
+      ),
+    );
   }
 }

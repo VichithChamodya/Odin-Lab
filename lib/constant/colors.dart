@@ -6,6 +6,7 @@ const Color kSubMainColor = Color(0xFF448AFF);
 const Color kWhiteColor = Color(0xFFFFFFFF);
 const Color kBlackColor = Color(0xFF000000);
 const Color kGreyColor = Color(0xFF91919F);
+const Color kDarkGreyColor = Color(0xFF121212);
 
 // warning colors
 const Color kGreenColor = Color(0xFF00A86B);
