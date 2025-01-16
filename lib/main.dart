@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const OdinLab());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class OdinLab extends StatelessWidget {
+  const OdinLab({super.key});
 
   @override
   Widget build(BuildContext context) {
