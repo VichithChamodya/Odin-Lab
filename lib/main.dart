@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odinlab/pages/onboarding_screen/front_screen.dart';
+import 'package:odinlab/pages/onboarding_screen/onboarding_screen.dart';
 
 void main() {
   runApp(const OdinLab());
@@ -17,7 +17,7 @@ class OdinLab extends StatelessWidget {
         fontFamily: "Inter",
       ),
       home: const Scaffold(
-        body: FrontScreen(),
+        body: OnboardingScreen(),
       ),
     );
   }

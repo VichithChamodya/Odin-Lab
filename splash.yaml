@@ -8,7 +8,10 @@ flutter_native_splash:
     color_dark: "#272727"
     image: assets/images/logo.png
 
-  web: false
+  web:
+    color: "#FFFFFF"
+    color_dark: "#272727"
+    image: assets/images/logo.png
 # terminal commands
 # flutter pub run flutter_native_splash:create --path=splash.yaml
 # flutter pub run flutter_native_splash:remove

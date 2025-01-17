@@ -36,7 +36,6 @@ class FrontScreen extends StatelessWidget {
                       kWhiteColor,
                       kSubMainColor,
                       kMainColor,
-                      kBlackColor,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
