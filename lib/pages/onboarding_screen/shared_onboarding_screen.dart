@@ -22,7 +22,7 @@ class SharedOnboardingScreen extends StatelessWidget {
         children: [
           Image.asset(
             image,
-            width: 250,
+            width: 300,
             fit: BoxFit.cover,
           ),
           const SizedBox(height: kDefaultSizedBox),
@@ -45,6 +45,7 @@ class SharedOnboardingScreen extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: kMaxSizedBox),
         ],
       ),
     );

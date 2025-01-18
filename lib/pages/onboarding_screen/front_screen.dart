@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odinlab/constant/colors.dart';
+import 'package:odinlab/constant/sizes.dart';
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({super.key});
@@ -67,6 +68,7 @@ class FrontScreen extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
+                const SizedBox(height: kMaxSizedBox),
               ],
             ),
           ),

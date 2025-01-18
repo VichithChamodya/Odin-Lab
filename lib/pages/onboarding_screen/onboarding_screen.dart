@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/constant/sizes.dart';
 import 'package:odinlab/data/onboarding_data.dart';
+import 'package:odinlab/pages/dashboard.dart';
 import 'package:odinlab/pages/onboarding_screen/front_screen.dart';
 import 'package:odinlab/pages/onboarding_screen/shared_onboarding_screen.dart';
 import 'package:odinlab/widgets/custom_button.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -16,6 +18,12 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   // get onboarding data
   final data = OnboardingData();
+
+  // create page controller
+  final PageController _controller = PageController();
+
+  // track the current page index
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +47,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
               PageView.builder(
+                controller: _controller,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
                 itemCount: data.onboarding.length + 1,
                 itemBuilder: (context, index) {
                   if (index == 0) {
-                    // If it's the first page, return the FrontScreen
+                    // if it's the first page, return the front screen
                     return const FrontScreen();
                   } else {
-                    // Otherwise, return the onboarding screens
+                    // otherwise, return the onboarding screens
                     return SharedOnboardingScreen(
-                      // Adjust index to skip FrontScreen
+                      // adjust index to skip front screen
                       image: data.onboarding[index - 1].image,
                       title: data.onboarding[index - 1].title,
                       subtitle: data.onboarding[index - 1].subtitle,
@@ -56,18 +70,49 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
               ),
 
+              // page dot indicator
+              Container(
+                alignment: const Alignment(0, 0.65),
+                child: SmoothPageIndicator(
+                  controller: _controller,
+                  count: 5,
+                  effect: const SwapEffect(
+                    type: SwapType.yRotation,
+                    activeDotColor: kSubMainColor,
+                    dotColor: kShadowColor,
+                  ),
+                ),
+              ),
+
               // navigation button
-              const Positioned(
+              Positioned(
                 left: 0,
                 right: 0,
                 bottom: 55,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: kMaxPadding),
+                  padding: const EdgeInsets.symmetric(horizontal: kMaxPadding),
                   child: CustomButton(
-                    buttonText: "Start",
-                    buttonColor1: kSubMainColor,
-                    buttonColor2: kMainColor,
-                  ),
+                      buttonText: _currentIndex == 0 ? "Let's Start !" : "Next",
+                      buttonTextColor:
+                          _currentIndex == 0 ? kSubMainColor : kWhiteColor,
+                      buttonColor1:
+                          _currentIndex == 0 ? kWhiteColor : kSubMainColor,
+                      buttonColor2:
+                          _currentIndex == 0 ? kWhiteColor : kMainColor,
+                      onPressed: () {
+                        _currentIndex == 4
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Dashboard(),
+                                ),
+                              )
+                            : _controller.animateToPage(
+                                _controller.page!.toInt() + 1,
+                                duration: const Duration(milliseconds: 700),
+                                curve: Curves.easeInOutQuint,
+                              );
+                      }),
                 ),
               ),
             ],
