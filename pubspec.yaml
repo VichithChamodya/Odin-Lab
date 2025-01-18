@@ -40,6 +40,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.14.3"
+
+flutter_launcher_icons:
+  android: "adaptive_icon" # Use "adaptive_icon" for background support
+  ios: true
+  image_path: "assets/images/logo.png"
+  adaptive_icon_background: "#000000" # Black background color
+  adaptive_icon_foreground: "assets/images/logo.png" # Foreground image
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -96,9 +96,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       buttonTextColor:
                           _currentIndex == 0 ? kSubMainColor : kWhiteColor,
                       buttonColor1:
-                          _currentIndex == 0 ? kWhiteColor : kSubMainColor,
-                      buttonColor2:
                           _currentIndex == 0 ? kWhiteColor : kMainColor,
+                      buttonColor2:
+                          _currentIndex == 0 ? kWhiteColor : kSubMainColor,
                       onPressed: () {
                         _currentIndex == 4
                             ? Navigator.push(
