@@ -18,6 +18,10 @@ class _ExploreState extends State<Explore> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          DailyTimeGoalCard(
+            progressValue: 1,
+            timeGoal: 15,
+          ),
           SizedBox(height: 20),
           SectionTitle(title: "Categories"),
           SizedBox(height: 20),
