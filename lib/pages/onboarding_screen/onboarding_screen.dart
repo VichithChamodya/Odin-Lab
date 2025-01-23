@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/constant/sizes.dart';
 import 'package:odinlab/data/onboarding_data.dart';
-import 'package:odinlab/pages/dashboard.dart';
+import 'package:odinlab/pages/login_screen/signup_screen.dart';
 import 'package:odinlab/pages/onboarding_screen/front_screen.dart';
 import 'package:odinlab/pages/onboarding_screen/shared_onboarding_screen.dart';
 import 'package:odinlab/widgets/custom_button.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -104,7 +106,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ? Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Dashboard(),
+                                  builder: (context) => const SignupScreen(),
                                 ),
                               )
                             : _controller.animateToPage(
