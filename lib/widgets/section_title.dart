@@ -3,8 +3,9 @@ import 'package:odinlab/constant/colors.dart';
 
 class SectionTitle extends StatelessWidget {
   final String title;
+  final VoidCallback onTap;
 
-  const SectionTitle({super.key, required this.title});
+  const SectionTitle({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +20,35 @@ class SectionTitle extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        const Text(
-          "see all",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: kGreyColor,
+        SizedBox(
+          height: 30,
+          child: TextButton(
+            onPressed: onTap,
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
+              foregroundColor: kOrangeColor,
+            ),
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "see all",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: kOrangeColor,
+                  ),
+                ),
+                Icon(
+                  Icons.navigate_next,
+                  size: 20,
+                  color: kGreyColor,
+                ),
+              ],
+            ),
           ),
-        ),
-        const Icon(
-          Icons.navigate_next,
-          size: 22,
-          color: kGreyColor,
         ),
       ],
     );

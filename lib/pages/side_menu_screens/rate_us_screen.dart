@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:odinlab/widgets/animatedButton.dart';
 
 class RateUs extends StatelessWidget {
   const RateUs({super.key});
@@ -43,20 +42,6 @@ class RateUs extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => _showDialog(context),
               child: const Text("Show Dialog"),
-            ),
-          ),
-          AnimatedButton(
-            text: "Tap Me",
-            onPressed: () {
-              // Handle button press
-              debugPrint("Button Pressed!");
-            },
-            tapColor: Colors.blue.withOpacity(0.3), // Color when pressed
-            normalColor: Colors.transparent, // Normal background color
-            textStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.blueAccent,
             ),
           ),
         ],

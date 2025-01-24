@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:odinlab/constant/colors.dart';
+import 'package:odinlab/pages/dashboard_screen/bookmarks.dart';
 import 'package:odinlab/pages/dashboard_screen/explore.dart';
+import 'package:odinlab/pages/dashboard_screen/my_courses.dart';
+import 'package:odinlab/pages/dashboard_screen/profile.dart';
 import 'package:odinlab/widgets/bitzy.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,16 +17,16 @@ class MainScreenState extends State<MainScreen> {
   double xOffset = 0;
   double yOffset = 0;
   double scaleFactor = 1;
-  double rotationAngle = 0; // Rotation angle for the Z-axis
+  double rotationAngle = 0; // rotation angle for the Z-axis
   bool isDrawerOpen = false;
 
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
     const Explore(),
-    const Center(child: Text("Add Page")),
-    const Center(child: Text("Favorites Page")),
-    const Center(child: Text("Profile Page")),
+    const Bookmarks(),
+    const MyCourses(),
+    const Profile(),
   ];
 
   void toggleDrawer() {
@@ -35,10 +38,10 @@ class MainScreenState extends State<MainScreen> {
         rotationAngle = 0;
         isDrawerOpen = false;
       } else {
-        // Open drawer with rotation
+        // open drawer with rotation
         xOffset = MediaQuery.of(context).size.width * 0.5;
         yOffset = MediaQuery.of(context).size.height * 0.15;
-        // Slight rotation in radians (approx. -2.8 degrees)
+        // slight rotation in radians (approx. -2.8 degrees)
         rotationAngle = 0.08;
         scaleFactor = 0.80;
         isDrawerOpen = true;
@@ -51,7 +54,7 @@ class MainScreenState extends State<MainScreen> {
     return AnimatedContainer(
       transform: Matrix4.translationValues(xOffset, yOffset, 0)
         ..scale(scaleFactor)
-        ..rotateZ(rotationAngle), // Apply rotation
+        ..rotateZ(rotationAngle), // apply rotation
       duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -70,7 +73,7 @@ class MainScreenState extends State<MainScreen> {
       ),
       child: Scaffold(
         appBar: AppBar(
-          //backgroundColor: Colors.blueAccent,
+          // backgroundColor: Colors.blueAccent,
           title: const Text("Odin Lab"),
           leading: IconButton(
             onPressed: toggleDrawer,
@@ -113,7 +116,13 @@ class MainScreenState extends State<MainScreen> {
         ),
         body: Stack(
           children: [
-            _pages[_currentIndex], // display the selected page
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 10,
+              ),
+              child: _pages[_currentIndex], // display the selected page
+            ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -123,8 +132,8 @@ class MainScreenState extends State<MainScreen> {
               label: "Explore",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add),
-              label: "Add",
+              icon: Icon(Icons.bookmarks),
+              label: "Bookmarks",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite),

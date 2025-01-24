@@ -88,7 +88,7 @@ class _DailyTimeGoalCardState extends State<DailyTimeGoalCard> {
                           ? "Well done ! You've hit today's goal..."
                           : "Keep going ! You're doing great...",
                       style: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: kWhiteColor,
                           fontStyle: FontStyle.italic),
