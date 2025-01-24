@@ -116,13 +116,7 @@ class MainScreenState extends State<MainScreen> {
         ),
         body: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 10,
-              ),
-              child: _pages[_currentIndex], // display the selected page
-            ),
+            _pages[_currentIndex],
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

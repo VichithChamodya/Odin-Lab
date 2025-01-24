@@ -152,7 +152,7 @@ class _DailyTimeGoalCardState extends State<DailyTimeGoalCard> {
                       backgroundColor: kProgressBarBackground,
                       circularStrokeCap: CircularStrokeCap.round,
                       animation: true,
-                      animationDuration: 1000,
+                      animationDuration: 2000,
                     ),
                     Text(
                       "$percentage %",
