@@ -38,6 +38,8 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   animate_do: ^3.3.4
   percent_indicator: ^4.2.4
+  provider: ^6.1.2
+  shared_preferences: ^2.4.0
 
 dev_dependencies:
   flutter_test:
