@@ -4,8 +4,12 @@ import 'package:odinlab/constant/colors.dart';
 class CategoryCard extends StatelessWidget {
   final IconData categoryIcon;
   final String categoryName;
+  final VoidCallback categoryOnTap;
   const CategoryCard(
-      {super.key, required this.categoryIcon, required this.categoryName});
+      {super.key,
+      required this.categoryIcon,
+      required this.categoryName,
+      required this.categoryOnTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class CategoryCard extends StatelessWidget {
           shadowColor: kShadowColor,
           elevation: 4,
         ),
-        onPressed: () {},
+        onPressed: categoryOnTap,
         child: Row(
           children: [
             Icon(

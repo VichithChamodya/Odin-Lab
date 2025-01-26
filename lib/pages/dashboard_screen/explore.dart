@@ -6,6 +6,7 @@ import 'package:odinlab/data/courses_data/recommended_courses.dart';
 import 'package:odinlab/models/category_model.dart';
 import 'package:odinlab/models/course_model.dart';
 import 'package:odinlab/pages/dashboard_screen/all_categories.dart';
+import 'package:odinlab/pages/courses/courses.dart';
 import 'package:odinlab/widgets/course_card.dart';
 import 'package:odinlab/widgets/daily_time_goal_card.dart';
 import 'package:odinlab/widgets/section_title.dart';
@@ -85,6 +86,14 @@ class _ExploreState extends State<Explore> {
                     child: CategoryCard(
                       categoryIcon: category.categoryIcon,
                       categoryName: category.categoryName,
+                      categoryOnTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Courses(),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
@@ -108,6 +117,7 @@ class _ExploreState extends State<Explore> {
                 return CategoryCard(
                   categoryIcon: category.categoryIcon,
                   categoryName: category.categoryName,
+                  categoryOnTap: () {},
                 );
               },
             ),

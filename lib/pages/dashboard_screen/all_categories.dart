@@ -34,6 +34,7 @@ class AllCategories extends StatelessWidget {
               return CategoryCard(
                 categoryIcon: category.categoryIcon,
                 categoryName: category.categoryName,
+                categoryOnTap: () {},
               );
             },
           ),

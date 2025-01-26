@@ -85,7 +85,12 @@ class MainScreenState extends State<MainScreen> {
           actions: [
             IconButton(
               icon: const Icon(Icons.search),
-              onPressed: () {},
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: MySearchDelegate(),
+                );
+              },
             ),
             IconButton(
               icon: const Icon(Icons.notifications),
@@ -150,6 +155,72 @@ class MainScreenState extends State<MainScreen> {
           unselectedItemColor: Colors.grey,
         ),
       ),
+    );
+  }
+}
+
+// search bar delegate
+class MySearchDelegate extends SearchDelegate {
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = "";
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Center(
+      child: Text(
+        query,
+        style: const TextStyle(fontSize: 20),
+      ),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> suggestions = [
+      "Python",
+      "Dart",
+      "Flutter",
+      "Java",
+      "Kotlin",
+      "Swift",
+      "React Native",
+      "React JS",
+      "Node JS",
+    ];
+    suggestions = suggestions
+        .where(
+          (element) => element.toLowerCase().contains(query.toLowerCase()),
+        )
+        .toList();
+    return ListView.builder(
+      itemCount: suggestions.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(suggestions[index]),
+          onTap: () {
+            query = suggestions[index];
+          },
+        );
+      },
     );
   }
 }

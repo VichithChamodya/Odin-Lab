@@ -12,9 +12,9 @@ class _CustomTabBarState extends State<CustomTabBar>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final List<String> courseTabs = [
+    "All Courses",
     "Free Courses",
     "Premium Courses",
-    "Modal Papers",
   ];
 
   @override
@@ -49,9 +49,9 @@ class _CustomTabBarState extends State<CustomTabBar>
             controller: _tabController,
             children: const [
               // Replace with your actual content widgets
+              Center(child: Text('All Courses')),
               Center(child: Text('Free Courses Content')),
               Center(child: Text('Premium Courses Content')),
-              Center(child: Text('Modal Papers Content')),
             ],
           ),
         ),
