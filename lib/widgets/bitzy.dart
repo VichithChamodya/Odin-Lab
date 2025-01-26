@@ -88,8 +88,8 @@ class BitzyState extends State<Bitzy> {
                         "Hi.. I'm Bitzy!\nHow can I help You ?",
                         style: TextStyle(
                           color: kWhiteColor,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:odinlab/data/category_data.dart';
 import 'package:odinlab/models/category_model.dart';
+import 'package:odinlab/pages/courses/courses.dart';
 import 'package:odinlab/widgets/category_card.dart';
 
 class AllCategories extends StatelessWidget {
@@ -13,15 +14,15 @@ class AllCategories extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("All Categories"),
+        title: const Text("Categories"),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: SingleChildScrollView(
           child: GridView.builder(
             shrinkWrap: true,
             clipBehavior: Clip.none,
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.symmetric(vertical: 15),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1,
               crossAxisSpacing: 5,
@@ -34,7 +35,14 @@ class AllCategories extends StatelessWidget {
               return CategoryCard(
                 categoryIcon: category.categoryIcon,
                 categoryName: category.categoryName,
-                categoryOnTap: () {},
+                categoryOnTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Courses(),
+                    ),
+                  );
+                },
               );
             },
           ),

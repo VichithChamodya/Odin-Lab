@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+
+import 'package:intl/intl.dart';
+
 import 'package:odinlab/constant/colors.dart';
+import 'package:odinlab/widgets/bitzy.dart';
+
+// dashboard screens
 import 'package:odinlab/pages/dashboard_screen/bookmarks.dart';
 import 'package:odinlab/pages/dashboard_screen/explore.dart';
 import 'package:odinlab/pages/dashboard_screen/my_courses.dart';
 import 'package:odinlab/pages/dashboard_screen/profile.dart';
-import 'package:odinlab/widgets/bitzy.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,6 +24,21 @@ class MainScreenState extends State<MainScreen> {
   double scaleFactor = 1;
   double rotationAngle = 0; // rotation angle for the Z-axis
   bool isDrawerOpen = false;
+
+  // date and time formatter
+  final DateFormat formatter = DateFormat("EEEE, MMMM, dd");
+
+  // function to determine greeting message based on time
+  String getGreeting() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return "Good Morning..!";
+    } else if (hour < 18) {
+      return "Good Afternoon..!";
+    } else {
+      return "Good Evening..!";
+    }
+  }
 
   int _currentIndex = 0;
 
@@ -51,6 +71,8 @@ class MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String greeting = getGreeting();
+
     return AnimatedContainer(
       transform: Matrix4.translationValues(xOffset, yOffset, 0)
         ..scale(scaleFactor)
@@ -74,7 +96,27 @@ class MainScreenState extends State<MainScreen> {
       child: Scaffold(
         appBar: AppBar(
           // backgroundColor: Colors.blueAccent,
-          title: const Text("Odin Lab"),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Hello Vichith,",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: kGreyColor,
+                ),
+              ),
+              Text(
+                greeting,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: kBlackColor,
+                ),
+              ),
+            ],
+          ),
           leading: IconButton(
             onPressed: toggleDrawer,
             icon: Icon(
@@ -151,8 +193,8 @@ class MainScreenState extends State<MainScreen> {
               },
             );
           },
-          selectedItemColor: Colors.blueAccent,
-          unselectedItemColor: Colors.grey,
+          selectedItemColor: kSubMainColor,
+          unselectedItemColor: kGreyColor,
         ),
       ),
     );

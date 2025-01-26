@@ -48,7 +48,7 @@ class _ExploreState extends State<Explore> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: DailyTimeGoalCard(
-              progressValue: 1,
+              progressValue: 0.6,
               timeGoal: 15,
             ),
           ),
@@ -117,7 +117,14 @@ class _ExploreState extends State<Explore> {
                 return CategoryCard(
                   categoryIcon: category.categoryIcon,
                   categoryName: category.categoryName,
-                  categoryOnTap: () {},
+                  categoryOnTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Courses(),
+                      ),
+                    );
+                  },
                 );
               },
             ),

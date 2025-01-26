@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:odinlab/constant/colors.dart';
+import 'package:odinlab/pages/courses/all_courses.dart';
+import 'package:odinlab/pages/courses/free_courses.dart';
+import 'package:odinlab/pages/courses/premium_courses.dart';
 import 'package:odinlab/widgets/custom_tab_bar.dart';
 
-class Bookmarks extends StatefulWidget {
+class Bookmarks extends StatelessWidget {
   const Bookmarks({super.key});
 
   @override
-  State<Bookmarks> createState() => _BookmarksState();
-}
-
-class _BookmarksState extends State<Bookmarks> {
-  @override
   Widget build(BuildContext context) {
-    return const CustomTabBar();
+    return const CustomTabBar(
+      tabs: [
+        "All Courses",
+        "Free Courses",
+        "Premium Courses",
+      ],
+      tabViews: [
+        AllCourses(),
+        FreeCourses(),
+        PremiumCourses(),
+      ],
+      indicatorColor: kMainColor,
+    );
   }
 }
