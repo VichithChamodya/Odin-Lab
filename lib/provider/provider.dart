@@ -34,7 +34,9 @@ class UiProvider extends ChangeNotifier {
   );
 
   // Custom light theme
-  final lightTheme = ThemeData.light();
+  final lightTheme = ThemeData(
+    scaffoldBackgroundColor: const Color(0xFFF6F6F6),
+  );
 
   changeTheme() {
     _isDark = !_isDark;
