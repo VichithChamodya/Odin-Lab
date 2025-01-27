@@ -8,27 +8,17 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // profile header section
-            Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [kSubMainColor, kMainColor, kBlackColor],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(30),
-                ),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: Column(
+      body: CustomScrollView(
+        slivers: [
+          // Profile header with shrinking effect
+          SliverAppBar(
+            automaticallyImplyLeading: false,
+            expandedHeight: 200,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // profile picture
+                  // Profile picture
                   Stack(
                     alignment: Alignment.bottomRight,
                     children: [
@@ -50,13 +40,13 @@ class Profile extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
 
-                  // full name & user name
+                  // Full name & username
                   const Text(
                     "Vichith Wickramarathna",
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: kWhiteColor,
+                      color: kBlackColor,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -64,131 +54,170 @@ class Profile extends StatelessWidget {
                     "@vichithchamodya",
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.white70,
+                      color: kGreyColor,
                     ),
                   ),
                 ],
               ),
             ),
+          ),
 
-            const SizedBox(height: 20),
-
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ProfileStatusCard(
-                  statusIcon: Icons.school,
-                  statusValue: "25",
-                  statusTitle: "Courses Enrolled",
-                ),
-                ProfileStatusCard(
-                  statusIcon: Icons.access_time,
-                  statusValue: "120",
-                  statusTitle: "Hours Learned",
-                ),
-                ProfileStatusCard(
-                  statusIcon: Icons.star,
-                  statusValue: "8",
-                  statusTitle: "Achievements",
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 30),
-
-            // settings & actions section
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Account Settings",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+          // Scrollable content starts here
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: kWhiteColor,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      offset: Offset(0, 10),
                     ),
-                  ),
-                  const SizedBox(height: 15),
-                  _buildSettingsTile(
-                    context,
-                    title: "Edit Profile",
-                    icon: Icons.edit,
-                    onTap: () {},
-                  ),
-                  _buildSettingsTile(
-                    context,
-                    title: "Privacy Settings",
-                    icon: Icons.lock,
-                    onTap: () {},
-                  ),
-                  _buildSettingsTile(
-                    context,
-                    title: "Notifications",
-                    icon: Icons.notifications,
-                    onTap: () {},
-                  ),
-                  _buildSettingsTile(
-                    context,
-                    title: "Payment Methods",
-                    icon: Icons.payment,
-                    onTap: () {},
-                  ),
-                  _buildSettingsTile(
-                    context,
-                    title: "Logout",
-                    icon: Icons.logout,
-                    iconColor: Colors.red,
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            // motivational section
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: kSubMainColor,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Column(
-                children: [
-                  const Text(
-                    "“Learning never exhausts the mind.”",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic,
-                      color: kWhiteColor,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kWhiteColor,
-                      foregroundColor: kSubMainColor,
-                      shape: RoundedRectangleBorder(
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    // hanger
+                    Container(
+                      height: 6,
+                      width: 60,
+                      margin: const EdgeInsets.only(top: 8, bottom: 20),
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey.shade300,
                       ),
                     ),
-                    child: const Text("Continue Learning"),
-                  ),
-                ],
+                    const SizedBox(height: 10),
+
+                    // Profile status cards
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ProfileStatusCard(
+                          statusIcon: Icons.school,
+                          statusValue: "25",
+                          statusTitle: "Enrolled",
+                        ),
+                        ProfileStatusCard(
+                          statusIcon: Icons.access_time,
+                          statusValue: "120",
+                          statusTitle: "Hours Learned",
+                        ),
+                        ProfileStatusCard(
+                          statusIcon: Icons.star,
+                          statusValue: "8",
+                          statusTitle: "Achievements",
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    // Settings & actions section
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Account Settings",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: kGreyColor,
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+                          _buildSettingsTile(
+                            context,
+                            title: "Edit Profile",
+                            icon: Icons.edit,
+                            onTap: () {},
+                          ),
+                          _buildSettingsTile(
+                            context,
+                            title: "Privacy Settings",
+                            icon: Icons.lock,
+                            iconColor: kGreyColor,
+                            onTap: () {},
+                          ),
+                          _buildSettingsTile(
+                            context,
+                            title: "Notifications",
+                            icon: Icons.notifications,
+                            iconColor: kOrangeColor,
+                            onTap: () {},
+                          ),
+                          _buildSettingsTile(
+                            context,
+                            title: "Payment Methods",
+                            icon: Icons.payment,
+                            iconColor: kGreenColor,
+                            onTap: () {},
+                          ),
+                          _buildSettingsTile(
+                            context,
+                            title: "Logout",
+                            icon: Icons.logout,
+                            iconColor: kRedColor,
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    // Motivational section
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: kSubMainColor,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        children: [
+                          const Text(
+                            "“Learning never exhausts the mind.”",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontStyle: FontStyle.italic,
+                              color: kWhiteColor,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: kWhiteColor,
+                              foregroundColor: kSubMainColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: const Text("Continue Learning"),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  // settings Tile
+  // Settings Tile
   Widget _buildSettingsTile(
     BuildContext context, {
     required String title,
@@ -198,15 +227,17 @@ class Profile extends StatelessWidget {
   }) {
     return ListTile(
       leading: Icon(icon, color: iconColor),
+      minVerticalPadding: 0,
       title: Text(
         title,
         style: const TextStyle(
-          fontSize: 16,
+          fontSize: 14,
         ),
       ),
       trailing: const Icon(
         Icons.arrow_forward_ios,
         size: 16,
+        color: kGreyColor,
       ),
       onTap: onTap,
     );
