@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:odinlab/constant/colors.dart';
+import 'package:odinlab/pages/dashboard_screen/completed.dart';
+import 'package:odinlab/pages/dashboard_screen/ongoing.dart';
+import 'package:odinlab/widgets/custom_tab_bar.dart';
 
 class MyCourses extends StatefulWidget {
   const MyCourses({super.key});
@@ -10,6 +14,13 @@ class MyCourses extends StatefulWidget {
 class _MyCoursesState extends State<MyCourses> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      child: CustomTabBar(
+        tabs: ["Ongoing", "Completed"],
+        tabViews: [Ongoing(), Completed()],
+        indicatorColor: kMainColor,
+      ),
+    );
   }
 }
