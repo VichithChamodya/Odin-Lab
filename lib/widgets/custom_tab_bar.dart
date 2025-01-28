@@ -35,11 +35,10 @@ class _CustomTabBarState extends State<CustomTabBar>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: TabBar(
+    return Scaffold(
+      body: Column(
+        children: [
+          TabBar(
             controller: _tabController,
             isScrollable: true,
             labelColor: kBlackColor,
@@ -50,14 +49,14 @@ class _CustomTabBarState extends State<CustomTabBar>
             tabAlignment: TabAlignment.start,
             tabs: widget.tabs.map((tab) => Tab(text: tab)).toList(),
           ),
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: widget.tabViews,
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: widget.tabViews,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

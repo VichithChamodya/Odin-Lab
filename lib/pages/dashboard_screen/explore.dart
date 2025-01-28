@@ -189,7 +189,7 @@ class _ExploreState extends State<Explore> {
               itemCount: mostPopularCourses.length,
               itemBuilder: (context, index) {
                 CourseModel course = mostPopularCourses[index];
-                return const SmallCourseCard();
+                return const CourseDetails();
               },
             ),
           ),

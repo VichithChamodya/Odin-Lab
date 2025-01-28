@@ -16,7 +16,7 @@ class _FreeCoursesState extends State<FreeCourses> {
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Column(
         children: [
-          SmallCourseCard(),
+          CourseDetails(),
         ],
       ),
     );

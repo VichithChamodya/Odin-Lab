@@ -25,4 +25,5 @@ const Color kSelectionColor = Color(0x7C4489FF);
 // gradient colors
 
 // shadow colors
-const Color kShadowColor = Color.fromARGB(80, 0, 0, 0);
+const Color kShadowColor = Color(0x50000000);
+const Color kLisgtShadowColor = Color(0x2A000000);

@@ -16,7 +16,7 @@ class _AllCoursesState extends State<AllCourses> {
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Column(
         children: [
-          SmallCourseCard(),
+          CourseDetails(),
         ],
       ),
     );
