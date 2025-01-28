@@ -41,13 +41,7 @@ class MainScreenState extends State<MainScreen> {
   }
 
   int _currentIndex = 0;
-
-  final List<Widget> _pages = [
-    const Explore(),
-    const Bookmarks(),
-    const MyCourses(),
-    const Profile(),
-  ];
+  final PageController _pageController = PageController();
 
   void toggleDrawer() {
     setState(() {
@@ -67,6 +61,12 @@ class MainScreenState extends State<MainScreen> {
         isDrawerOpen = true;
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -161,12 +161,36 @@ class MainScreenState extends State<MainScreen> {
           width: MediaQuery.of(context).size.width * 1,
           child: const Bitzy(),
         ),
-        body: Stack(
-          children: [
-            _pages[_currentIndex],
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          children: const [
+            Explore(),
+            Bookmarks(),
+            MyCourses(),
+            Profile(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          selectedItemColor: kSubMainColor,
+          unselectedItemColor: kGreyColor,
+          onTap: (index) {
+            _pageController.animateToPage(
+              index,
+              curve: Curves.easeInOut,
+              duration: const Duration(milliseconds: 300),
+            );
+            setState(
+              () {
+                _currentIndex = index;
+              },
+            );
+          },
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.explore),
@@ -185,16 +209,6 @@ class MainScreenState extends State<MainScreen> {
               label: "Profile",
             ),
           ],
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(
-              () {
-                _currentIndex = index;
-              },
-            );
-          },
-          selectedItemColor: kSubMainColor,
-          unselectedItemColor: kGreyColor,
         ),
       ),
     );
