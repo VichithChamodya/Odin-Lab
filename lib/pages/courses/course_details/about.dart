@@ -15,7 +15,7 @@ class About extends StatelessWidget {
             const Text(
               "About This Course",
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -24,7 +24,8 @@ class About extends StatelessWidget {
             const Text(
               "Explore the basics of design thinking and learn how to apply it effectively in real-world scenarios.",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
                 color: kGreyColor,
               ),
             ),
@@ -74,7 +75,7 @@ class About extends StatelessWidget {
             const Text(
               "This course is perfect for aspiring designers, entrepreneurs, and anyone looking to improve their creative problem-solving skills.",
               style: TextStyle(
-                fontSize: 15,
+                fontSize: 14,
                 height: 1.5,
               ),
             ),
@@ -101,7 +102,7 @@ class _BulletPoint extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 13),
             ),
           ),
         ],

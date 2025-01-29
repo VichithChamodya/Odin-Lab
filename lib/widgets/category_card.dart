@@ -16,13 +16,13 @@ class CategoryCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          backgroundColor: kWhiteColor,
-          foregroundColor: kSubMainColor,
-          shadowColor: kShadowColor,
-          elevation: 4,
-        ),
+        // style: ElevatedButton.styleFrom(
+        //   padding: const EdgeInsets.symmetric(horizontal: 10),
+        //   backgroundColor: kWhiteColor,
+        //   foregroundColor: kSubMainColor,
+        //   shadowColor: kShadowColor,
+        //   elevation: 4,
+        // ),
         onPressed: categoryOnTap,
         child: Row(
           children: [

@@ -11,6 +11,9 @@ class Ongoing extends StatefulWidget {
 class _OngoingState extends State<Ongoing> {
   @override
   Widget build(BuildContext context) {
-    return const OngoingCourseCard();
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      child: OngoingCourseCard(),
+    );
   }
 }

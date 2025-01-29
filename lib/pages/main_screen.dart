@@ -112,7 +112,7 @@ class MainScreenState extends State<MainScreen> {
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
-                  color: kBlackColor,
+                  //color: kBlackColor,
                 ),
               ),
             ],
@@ -121,7 +121,7 @@ class MainScreenState extends State<MainScreen> {
             onPressed: toggleDrawer,
             icon: Icon(
               isDrawerOpen ? Icons.arrow_back_ios : Icons.menu,
-              color: kBlackColor,
+              //color: kBlackColor,
             ),
           ),
           actions: [
@@ -179,6 +179,10 @@ class MainScreenState extends State<MainScreen> {
           currentIndex: _currentIndex,
           selectedItemColor: kSubMainColor,
           unselectedItemColor: kGreyColor,
+          selectedLabelStyle: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
           onTap: (index) {
             _pageController.animateToPage(
               index,
@@ -244,7 +248,7 @@ class MySearchDelegate extends SearchDelegate {
     return Center(
       child: Text(
         query,
-        style: const TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -267,16 +271,20 @@ class MySearchDelegate extends SearchDelegate {
           (element) => element.toLowerCase().contains(query.toLowerCase()),
         )
         .toList();
-    return ListView.builder(
-      itemCount: suggestions.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(suggestions[index]),
-          onTap: () {
-            query = suggestions[index];
-          },
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+      child: ListView.builder(
+        itemCount: suggestions.length,
+        itemBuilder: (context, index) {
+          return SizedBox(
+            height: 45,
+            child: Text(
+              suggestions[index],
+              style: const TextStyle(fontSize: 14),
+            ),
+          );
+        },
+      ),
     );
   }
 }

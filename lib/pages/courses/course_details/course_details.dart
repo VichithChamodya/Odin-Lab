@@ -111,7 +111,7 @@ class CourseDetailPage extends StatelessWidget {
               },
               body: Container(
                 decoration: BoxDecoration(
-                  color: ThemeData().scaffoldBackgroundColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -207,13 +207,13 @@ class CourseDetailPage extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
-          color: Colors.white,
-          boxShadow: [
+          color: Theme.of(context).appBarTheme.backgroundColor,
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12,
               blurRadius: 10,

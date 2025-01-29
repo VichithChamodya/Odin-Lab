@@ -176,13 +176,16 @@ class BitzyState extends State<Bitzy> {
         // input field
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-            BoxShadow(
-              color: kShadowColor,
-              blurRadius: 8,
-              offset: Offset(0, 4),
-            ),
-          ]),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: kShadowColor,
+                blurRadius: 8,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
           child: Row(
             children: [
               Expanded(
@@ -197,7 +200,7 @@ class BitzyState extends State<Bitzy> {
                       borderRadius: BorderRadius.circular(30),
                       borderSide: BorderSide.none,
                     ),
-                    fillColor: Colors.grey[200],
+                    //fillColor: Colors.grey[200],
                     filled: true,
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 20,
@@ -211,7 +214,10 @@ class BitzyState extends State<Bitzy> {
                 radius: 25,
                 backgroundColor: kSubMainColor,
                 child: IconButton(
-                  icon: const Icon(Icons.send, color: Colors.white),
+                  icon: const Icon(
+                    Icons.send,
+                    color: kWhiteColor,
+                  ),
                   onPressed: () => _sendMessage(_controller.text),
                 ),
               ),

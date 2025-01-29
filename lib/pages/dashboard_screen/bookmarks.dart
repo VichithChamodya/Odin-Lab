@@ -10,18 +10,21 @@ class Bookmarks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomTabBar(
-      tabs: [
-        "All Courses",
-        "Free Courses",
-        "Premium Courses",
-      ],
-      tabViews: [
-        AllCourses(),
-        FreeCourses(),
-        PremiumCourses(),
-      ],
-      indicatorColor: kMainColor,
+    return const Padding(
+      padding: EdgeInsets.only(top: 10),
+      child: CustomTabBar(
+        tabs: [
+          "All Courses",
+          "Free Courses",
+          "Premium Courses",
+        ],
+        tabViews: [
+          AllCourses(),
+          FreeCourses(),
+          PremiumCourses(),
+        ],
+        indicatorColor: kSubMainColor,
+      ),
     );
   }
 }

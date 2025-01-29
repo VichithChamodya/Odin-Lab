@@ -166,13 +166,6 @@ class _DailyTimeGoalCardState extends State<DailyTimeGoalCard> {
                 ),
               ],
             ),
-            // LinearProgressIndicator(
-            //   value: widget.progressValue,
-            //   minHeight: 12,
-            //   borderRadius: BorderRadius.circular(15),
-            //   backgroundColor: kShadowColor,
-            //   valueColor: AlwaysStoppedAnimation(getProgressColor()),
-            // ),
           ],
         ),
       ),

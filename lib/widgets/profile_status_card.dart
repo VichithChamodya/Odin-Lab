@@ -19,11 +19,15 @@ class ProfileStatusCard extends StatelessWidget {
       width: 100,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).brightness == Brightness.light
+            ? kWhiteColor
+            : kBlackColor,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.shade200,
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.grey.shade200
+                : kShadowColor,
             blurRadius: 10,
             spreadRadius: 5,
             offset: const Offset(0, 5),
@@ -44,7 +48,6 @@ class ProfileStatusCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: kBlackColor,
             ),
           ),
           const SizedBox(height: 5),

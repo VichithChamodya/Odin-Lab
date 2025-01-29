@@ -14,7 +14,7 @@ class Reviews extends StatelessWidget {
           const Text(
             "Student Reviews",
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -112,7 +112,7 @@ class Reviews extends StatelessWidget {
           "$star★",
           style: const TextStyle(
             fontSize: 14,
-            color: kBlackColor,
+            color: kGreyColor,
           ),
         ),
         const SizedBox(width: 10),
@@ -158,7 +158,7 @@ class _ReviewCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).appBarTheme.backgroundColor,
         borderRadius: BorderRadius.circular(15),
         boxShadow: const [
           BoxShadow(
@@ -178,7 +178,7 @@ class _ReviewCard extends StatelessWidget {
                 radius: 20,
                 backgroundColor: Colors.blue.shade100,
                 child: Text(
-                  name[0], // first letter of the name
+                  name[0], // get first letter of the name
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -194,13 +194,13 @@ class _ReviewCard extends StatelessWidget {
                     name,
                     style: const TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
                     date,
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: kGreyColor,
                     ),
                   ),
@@ -208,7 +208,7 @@ class _ReviewCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
 
           // star rating
           Row(
@@ -221,15 +221,14 @@ class _ReviewCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
 
           // review text
           Text(
             review,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 12,
               height: 1.5,
-              color: kBlackColor,
             ),
           ),
         ],

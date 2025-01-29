@@ -41,8 +41,6 @@ class _CustomTabBarState extends State<CustomTabBar>
           TabBar(
             controller: _tabController,
             isScrollable: true,
-            labelColor: kBlackColor,
-            unselectedLabelColor: kGreyColor,
             indicatorColor: widget.indicatorColor,
             indicatorPadding: const EdgeInsets.only(bottom: 10),
             dividerColor: Colors.transparent,

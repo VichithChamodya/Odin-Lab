@@ -8,9 +8,10 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       body: CustomScrollView(
         slivers: [
-          // Profile header with shrinking effect
+          // profile header with shrinking effect
           SliverAppBar(
             automaticallyImplyLeading: false,
             expandedHeight: 200,
@@ -18,7 +19,7 @@ class Profile extends StatelessWidget {
               background: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Profile picture
+                  // profile picture
                   Stack(
                     alignment: Alignment.bottomRight,
                     children: [
@@ -40,13 +41,12 @@ class Profile extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
 
-                  // Full name & username
+                  // full name & username
                   const Text(
                     "Vichith Wickramarathna",
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: kBlackColor,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -62,14 +62,14 @@ class Profile extends StatelessWidget {
             ),
           ),
 
-          // Scrollable content starts here
+          // scrollable content
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: kWhiteColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
@@ -92,7 +92,7 @@ class Profile extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
 
-                    // Profile status cards
+                    // profile status cards
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -116,7 +116,7 @@ class Profile extends StatelessWidget {
 
                     const SizedBox(height: 30),
 
-                    // Settings & actions section
+                    // settings & actions section
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
@@ -171,7 +171,7 @@ class Profile extends StatelessWidget {
 
                     const SizedBox(height: 30),
 
-                    // Motivational section
+                    // motivational section
                     Container(
                       width: double.infinity,
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -217,7 +217,7 @@ class Profile extends StatelessWidget {
     );
   }
 
-  // Settings Tile
+  // settings Tile
   Widget _buildSettingsTile(
     BuildContext context, {
     required String title,

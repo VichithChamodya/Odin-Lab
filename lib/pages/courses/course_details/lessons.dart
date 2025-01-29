@@ -12,7 +12,7 @@ class Lessons extends StatelessWidget {
           "Section 1 - Introduction",
           style: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         const SizedBox(height: 8),
@@ -23,7 +23,7 @@ class Lessons extends StatelessWidget {
           "Section 2 - Fundamentals",
           style: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         const SizedBox(height: 8),

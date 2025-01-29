@@ -15,11 +15,17 @@ class _MyCoursesState extends State<MyCourses> {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      padding: EdgeInsets.only(top: 10),
       child: CustomTabBar(
-        tabs: ["Ongoing", "Completed"],
-        tabViews: [Ongoing(), Completed()],
-        indicatorColor: kMainColor,
+        tabs: [
+          "Learning in Progress",
+          "Goals Unlocked",
+        ],
+        tabViews: [
+          Ongoing(),
+          Completed(),
+        ],
+        indicatorColor: kSubMainColor,
       ),
     );
   }

@@ -11,6 +11,9 @@ class Completed extends StatefulWidget {
 class _CompletedState extends State<Completed> {
   @override
   Widget build(BuildContext context) {
-    return const CompletedCourseCard();
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      child: CompletedCourseCard(),
+    );
   }
 }
