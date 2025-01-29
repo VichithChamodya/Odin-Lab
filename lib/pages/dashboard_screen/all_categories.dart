@@ -14,7 +14,12 @@ class AllCategories extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Categories"),
+        title: const Text(
+          "Categories",
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),

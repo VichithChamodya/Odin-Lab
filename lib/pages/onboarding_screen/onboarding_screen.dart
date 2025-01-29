@@ -5,7 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/constant/sizes.dart';
 import 'package:odinlab/data/onboarding_data.dart';
-import 'package:odinlab/pages/login_screen/signup_screen.dart';
+import 'package:odinlab/pages/authentication/signup_screen.dart';
 import 'package:odinlab/pages/onboarding_screen/front_screen.dart';
 import 'package:odinlab/pages/onboarding_screen/shared_onboarding_screen.dart';
 import 'package:odinlab/widgets/custom_button.dart';

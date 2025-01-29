@@ -4,7 +4,7 @@ import 'package:animate_do/animate_do.dart';
 
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/constant/sizes.dart';
-import 'package:odinlab/pages/login_screen/terms_and_conditions_screen.dart';
+import 'package:odinlab/pages/authentication/terms_and_conditions_screen.dart';
 import 'package:odinlab/widgets/custom_button.dart';
 
 class SignupScreen extends StatefulWidget {

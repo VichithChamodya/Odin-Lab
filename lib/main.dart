@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+
 import 'package:odinlab/providers/theme_provider.dart';
 import 'package:odinlab/widgets/side_menu.dart';
 import 'package:odinlab/pages/main_screen.dart';
-import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
