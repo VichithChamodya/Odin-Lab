@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
+import 'package:odinlab/models/user_model.dart';
+import 'package:odinlab/pages/wrapper.dart';
+import 'package:odinlab/services/auth.dart';
 import 'package:odinlab/providers/theme_provider.dart';
-import 'package:odinlab/widgets/side_menu.dart';
-import 'package:odinlab/pages/main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,16 +24,15 @@ class OdinLab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Odin Lab",
-      theme: Provider.of<ThemeProvider>(context).getThemeData,
-      home: const Scaffold(
-        body: Stack(
-          children: [
-            SideMenu(),
-            MainScreen(),
-          ],
+    return StreamProvider<UserModel?>.value(
+      initialData: UserModel(uid: ""),
+      value: AuthServices().user,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Odin Lab",
+        theme: Provider.of<ThemeProvider>(context).getThemeData,
+        home: const Scaffold(
+          body: Wrapper(),
         ),
       ),
     );

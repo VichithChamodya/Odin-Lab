@@ -43,7 +43,7 @@ class _ExploreState extends State<Explore> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 20),
+          const SizedBox(height: 25),
           // daily time goal card
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),

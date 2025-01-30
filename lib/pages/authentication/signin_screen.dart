@@ -1,49 +1,42 @@
 import 'package:flutter/material.dart';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/constant/sizes.dart';
-import 'package:odinlab/pages/authentication/terms_and_conditions_screen.dart';
 import 'package:odinlab/services/auth.dart';
 import 'package:odinlab/widgets/custom_button.dart';
 
-class SignupScreen extends StatefulWidget {
+class SigninScreen extends StatefulWidget {
   // toggle function
   final Function toggle;
 
-  const SignupScreen({super.key, required this.toggle});
+  const SigninScreen({super.key, required this.toggle});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SigninScreen> createState() => _SigninScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
-  // create a object from auth service
+class _SigninScreenState extends State<SigninScreen> {
+  // refference for the auth services class
   final AuthServices _auth = AuthServices();
 
   bool _isPasswordVisible = false;
-  bool _isConfirmPasswordVisible = false;
-  bool _isRememberMe = true;
-  bool _isTermsAccepted = true;
-
-  final _formKey = GlobalKey<FormState>();
-  final _userNameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-
-  @override
-  void dispose() {
-    _userNameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
 
   // error message
   String error = "";
+
+  final _formKey = GlobalKey<FormState>();
+  final _signinEmailController = TextEditingController();
+  final _signinPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _signinEmailController.dispose();
+    _signinPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,11 +89,11 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
           Positioned(
             left: 30,
-            top: 200,
+            top: 220,
             child: FadeInUp(
               duration: const Duration(milliseconds: 1300),
               child: const Text(
-                "Create\nNew Account",
+                "Sign In",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Colors.white,
@@ -148,17 +141,7 @@ class _SignupScreenState extends State<SignupScreen> {
             FadeInLeft(
               duration: const Duration(milliseconds: 1000),
               child: _buildTextField(
-                controller: _userNameController,
-                hintText: "Username",
-                validator: (value) =>
-                    value!.isEmpty ? "Please Enter Your Name" : null,
-              ),
-            ),
-            const SizedBox(height: 10),
-            FadeInLeft(
-              duration: const Duration(milliseconds: 1100),
-              child: _buildTextField(
-                controller: _emailController,
+                controller: _signinEmailController,
                 hintText: "Email",
                 validator: (value) =>
                     value!.isEmpty ? "Please Enter Your Email" : null,
@@ -166,9 +149,9 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
             const SizedBox(height: 10),
             FadeInLeft(
-              duration: const Duration(milliseconds: 1200),
+              duration: const Duration(milliseconds: 1100),
               child: _buildPasswordField(
-                controller: _passwordController,
+                controller: _signinPasswordController,
                 hintText: "Password",
                 isVisible: _isPasswordVisible,
                 toggleVisibility: () {
@@ -178,57 +161,75 @@ class _SignupScreenState extends State<SignupScreen> {
                   if (value!.isEmpty) {
                     return "Please Enter Valid Password";
                   }
-                  if (value.length < 6) {
-                    return "Password must be at least 6 characters";
-                  }
                   return null;
                 },
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             FadeInLeft(
-              duration: const Duration(milliseconds: 1300),
-              child: _buildPasswordField(
-                controller: _confirmPasswordController,
-                hintText: "Confirm Password",
-                isVisible: _isConfirmPasswordVisible,
-                toggleVisibility: () {
-                  setState(() =>
-                      _isConfirmPasswordVisible = !_isConfirmPasswordVisible);
-                },
-                validator: (value) {
-                  if (value!.isEmpty) return "Please Confirm Your Password";
-                  if (value != _passwordController.text) {
-                    return "Passwords do not match";
-                  }
-                  return null;
-                },
-              ),
-            ),
-            const SizedBox(height: 10),
-            // error message
-            if (error.isNotEmpty)
-              FadeInLeft(
-                duration: const Duration(milliseconds: 1400),
-                child: Text(
-                  error,
-                  style: const TextStyle(
-                    color: kRedColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
+              duration: const Duration(milliseconds: 1200),
+              child: Text(
+                error,
+                style: const TextStyle(
+                  color: kRedColor,
+                  fontSize: 14,
                 ),
               ),
-
-            const SizedBox(height: 10),
-            Column(
+            ),
+            const SizedBox(height: 30),
+            _buildSignInButton(),
+            const SizedBox(height: 30),
+            const Row(
               children: [
-                _buildRememberMe(),
-                _buildAgreeWithTermsAndConditions(),
+                Expanded(
+                  child: Divider(
+                    color: kLisgtShadowColor,
+                    thickness: 1,
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text("or",
+                      style: TextStyle(
+                        color: kGreyColor,
+                      )),
+                ),
+                Expanded(
+                  child: Divider(
+                    color: kLisgtShadowColor,
+                    thickness: 1,
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 20),
-            _buildSignupButton(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: SvgPicture.asset("assets/icons/google.svg"),
+                ),
+                const SizedBox(width: 20),
+                GestureDetector(
+                  onTap: () async {
+                    //dynamic result =
+                    await _auth.signinAnonymously();
+                    // if (result == null) {
+                    //   print("Error in signing anonymous");
+                    // } else {
+                    //   print("signin anonymous");
+                    //   print(result.uid);
+                    // }
+                  },
+                  child: SvgPicture.asset("assets/icons/anonymous.svg"),
+                ),
+              ],
+            ),
             const SizedBox(height: 20),
             FadeInUp(
               duration: const Duration(milliseconds: 1700),
@@ -236,7 +237,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Already Have an Account ?",
+                    "Don't have an Account? ",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -244,12 +245,12 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                   GestureDetector(
-                    // go to signin page
                     onTap: () {
+                      // go to signup page
                       widget.toggle();
                     },
                     child: const Text(
-                      'Sign In',
+                      'Sign Up',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -323,109 +324,27 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _buildRememberMe() {
-    return FadeInLeft(
-      duration: const Duration(milliseconds: 1400),
-      child: SizedBox(
-        height: 30,
-        child: Row(
-          children: [
-            Checkbox(
-              value: _isRememberMe,
-              activeColor: kSubMainColor,
-              side: const BorderSide(color: kGreyColor, width: 1.5),
-              onChanged: (value) {
-                setState(() => _isRememberMe = value!);
-              },
-            ),
-            const Text(
-              "Remember me for the next time",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: kGreyColor,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAgreeWithTermsAndConditions() {
-    return FadeInLeft(
-      duration: const Duration(milliseconds: 1500),
-      child: SizedBox(
-        height: 30,
-        child: Row(
-          children: [
-            Checkbox(
-              value: _isTermsAccepted,
-              activeColor: kSubMainColor,
-              side: const BorderSide(color: kGreyColor, width: 1.5),
-              onChanged: (value) {
-                setState(() {
-                  _isTermsAccepted = value!;
-                });
-              },
-            ),
-            Row(
-              children: [
-                const Text(
-                  'I agree to the ',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: kGreyColor,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TermsAndConditionsScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    'Terms and Conditions',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: kSubMainColor,
-                      decoration: TextDecoration.underline,
-                      decorationColor: kSubMainColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSignupButton() {
+  Widget _buildSignInButton() {
     return FadeInUp(
       duration: const Duration(milliseconds: 1600),
       child: SizedBox(
         width: double.infinity,
         child: CustomButton(
-          buttonText: "Sign Up",
+          buttonText: "Sign In",
           buttonColor1: kMainColor,
           buttonColor2: kSubMainColor,
           buttonTextColor: kWhiteColor,
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
-              dynamic result = await _auth.signupWithEmailAndPassword(
-                _emailController.text,
-                _passwordController.text,
+              // sign-in logic
+              dynamic result = await _auth.signinWithEmailAndPassword(
+                _signinEmailController.text,
+                _signinPasswordController.text,
               );
               if (result == null) {
-                // set error if registration fails
-                error = "Please enter a valid email";
+                setState(() {
+                  error = "Invalid Email or Password";
+                });
               }
             }
           },

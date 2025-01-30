@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/pages/side_menu_screens/downloads_screen.dart';
 import 'package:odinlab/pages/side_menu_screens/rate_us_screen.dart';
 import 'package:odinlab/pages/side_menu_screens/settings_screen.dart';
+import 'package:odinlab/services/auth.dart';
 import 'package:odinlab/widgets/custom_button.dart';
 
 class SideMenu extends StatelessWidget {
-  const SideMenu({super.key});
+  SideMenu({super.key});
+
+  // create a object from auth service
+  final AuthServices _auth = AuthServices();
 
   @override
   Widget build(BuildContext context) {
@@ -146,86 +151,7 @@ class SideMenu extends StatelessWidget {
 
   Widget _buildFooter(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-          context: context,
-          builder: (BuildContext context) {
-            return Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
-                ),
-                gradient: LinearGradient(
-                  colors: [kWhiteColor, kWhiteColor],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              height: 250,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Bye! Vichith Chamodya...",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: kGreyColor,
-                      ),
-                    ),
-                    const Text(
-                      "We wish to see you back real soon",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: kBlackColor,
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    const Text(
-                      "Are you sure you want to logout ?",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: kGreyColor,
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: CustomButton(
-                            buttonText: "CANCEL",
-                            buttonColor1: kSubMainColor,
-                            buttonColor2: kMainColor,
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Expanded(
-                          child: CustomButton(
-                            buttonText: "LOGOUT",
-                            buttonColor1: kRedColor,
-                            buttonColor2: kDarkRedColor,
-                            onPressed: () {},
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-      },
+      onTap: () => _showDialog(context),
       child: const Row(
         children: [
           Icon(Icons.logout, color: kGreyColor),
@@ -236,6 +162,78 @@ class SideMenu extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierColor: const Color(0xC5000000),
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          title: RichText(
+            text: const TextSpan(
+              children: [
+                TextSpan(
+                  text: "Bye! ",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                    color: kGreyColor,
+                  ),
+                ),
+                TextSpan(
+                  text: "Vichith 👋🏻\n",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                    color: kGreyColor,
+                  ),
+                ),
+                TextSpan(
+                  text: "We wish to see you back real soon...",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: kGreyColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          content: const Text(
+            "Are you sure you want to logout ?",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: kRedColor,
+            ),
+          ),
+          actions: [
+            CustomButton(
+              buttonText: "CANCEL",
+              buttonColor1: kSubMainColor,
+              buttonColor2: kMainColor,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            CustomButton(
+              buttonText: "LOGOUT",
+              buttonColor1: kRedColor,
+              buttonColor2: kDarkRedColor,
+              onPressed: () async {
+                await _auth.signOut();
+                // close the dialog if widget is still mounted
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

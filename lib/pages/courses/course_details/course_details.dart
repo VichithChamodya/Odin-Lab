@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/pages/courses/course_details/about.dart';
 import 'package:odinlab/pages/courses/course_details/lessons.dart';

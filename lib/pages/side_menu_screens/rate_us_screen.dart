@@ -15,14 +15,13 @@ class RateUs extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop(); // close the dialog
               },
               child: const Text("Decline"),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                // Add acceptance logic here
+                Navigator.of(context).pop(); // close the dialog
               },
               child: const Text("Accept"),
             ),
