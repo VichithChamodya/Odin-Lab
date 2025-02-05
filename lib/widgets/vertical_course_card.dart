@@ -46,7 +46,7 @@ class VerticalCourseCard extends StatelessWidget {
                         end: Alignment.bottomRight,
                       )
                     : null,
-                color: kWhiteColor,
+                color: Theme.of(context).appBarTheme.backgroundColor,
                 boxShadow: const [
                   BoxShadow(
                     color: Color(0x20000000),
@@ -77,7 +77,6 @@ class VerticalCourseCard extends StatelessWidget {
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
-                                color: kBlackColor,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,

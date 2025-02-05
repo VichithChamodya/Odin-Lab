@@ -44,7 +44,9 @@ class AllCategories extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Courses(),
+                      builder: (context) => Courses(
+                        categoryName: category.categoryName,
+                      ),
                     ),
                   );
                 },

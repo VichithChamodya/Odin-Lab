@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/models/course_model.dart';
 import 'package:odinlab/services/course_service.dart';
-
 import 'package:odinlab/widgets/vertical_course_card.dart';
 
-class AllCourses extends StatefulWidget {
-  const AllCourses({super.key});
+class AllCourses extends StatelessWidget {
+  final String categoryName;
 
-  @override
-  State<AllCourses> createState() => _AllCoursesState();
-}
+  const AllCourses({
+    super.key,
+    required this.categoryName,
+  });
 
-class _AllCoursesState extends State<AllCourses> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -71,7 +71,35 @@ class _AllCoursesState extends State<AllCourses> {
               ),
             );
           } else {
-            final List<CourseModel> courses = snapshot.data!;
+            // filter courses by category name
+            final List<CourseModel> courses = snapshot.data!
+                .where((course) => course.courseCategory == categoryName)
+                .toList();
+
+            // check if filtered courses are empty
+            if (courses.isEmpty) {
+              return Center(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 100),
+                    Lottie.asset(
+                      "assets/lotties/empty.json",
+                      height: 200,
+                      width: 200,
+                      fit: BoxFit.cover,
+                    ),
+                    Text(
+                      "No ${categoryName.toLowerCase()} courses yet..\nstay tuned !",
+                      style: const TextStyle(
+                        color: kGreyColor,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            }
+
             return ListView.builder(
               itemCount: courses.length,
               itemBuilder: (context, index) {
@@ -91,14 +119,3 @@ class _AllCoursesState extends State<AllCourses> {
     );
   }
 }
-
-// Column(
-      //   children: [
-      // VerticalCourseCard(
-      //     courseName: courseName,
-      //     courseAbout: courseAbout,
-      //     courseImage: courseImage,
-      //     isFree: isFree,
-      //     courseRating: courseRating),
-      //   ],
-      // ),

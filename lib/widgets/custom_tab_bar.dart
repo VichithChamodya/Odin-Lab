@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:odinlab/constant/colors.dart';
 
 class CustomTabBar extends StatefulWidget {
   final List<String> tabs;
@@ -43,6 +44,8 @@ class _CustomTabBarState extends State<CustomTabBar>
             indicatorColor: widget.indicatorColor,
             indicatorPadding: const EdgeInsets.only(bottom: 10),
             dividerColor: Colors.transparent,
+            labelColor: kSubMainColor,
+            splashBorderRadius: BorderRadius.circular(30),
             tabAlignment: TabAlignment.start,
             tabs: widget.tabs.map((tab) => Tab(text: tab)).toList(),
           ),
