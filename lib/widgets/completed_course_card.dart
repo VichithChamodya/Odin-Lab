@@ -16,7 +16,7 @@ class CompletedCourseCard extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: kWhiteColor,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               boxShadow: const [
                 BoxShadow(
                   color: Color(0x20000000),
@@ -46,7 +46,6 @@ class CompletedCourseCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: kBlackColor,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -76,3 +75,58 @@ class CompletedCourseCard extends StatelessWidget {
     );
   }
 }
+
+/*
+Container(
+          margin: const EdgeInsets.only(bottom: 5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Theme.of(context).appBarTheme.backgroundColor,
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x20000000),
+                blurRadius: 5,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                "assets/images/Anime girl headphones desktop computer screen.jpg",
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            title: const Text(
+              "Python for beinners",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            subtitle: const Row(
+              children: [
+                Icon(
+                  Icons.check_circle,
+                  size: 20,
+                  color: kGreenColor,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "Completed",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: kGreenColor,
+                  ),
+                ),
+              ],
+            ),
+            onTap: () {},
+          ),
+        ),
+*/

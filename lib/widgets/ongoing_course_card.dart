@@ -21,7 +21,7 @@ class _OngoingCourseCardState extends State<OngoingCourseCard> {
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: kWhiteColor,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               boxShadow: const [
                 BoxShadow(
                   color: Color(0x20000000),
@@ -52,7 +52,6 @@ class _OngoingCourseCardState extends State<OngoingCourseCard> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: kBlackColor,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -102,3 +101,79 @@ class _OngoingCourseCardState extends State<OngoingCourseCard> {
     );
   }
 }
+
+/*
+Container(
+          margin: const EdgeInsets.only(bottom: 5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Theme.of(context).appBarTheme.backgroundColor,
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x20000000),
+                blurRadius: 5,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                "assets/images/Anime girl headphones desktop computer screen.jpg",
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            title: const Text(
+              "Python for beinners",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "4 lessons to go",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: kGreyColor,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: LinearProgressIndicator(
+                        value: 0.6,
+                        backgroundColor: Colors.grey.shade300,
+                        color: kSubMainColor,
+                        minHeight: 5,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      "60%",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: kGreyColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            onTap: () {},
+          ),
+        ),
+*/

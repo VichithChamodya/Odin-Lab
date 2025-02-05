@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/data/category_data.dart';
-import 'package:odinlab/data/courses_data/recommended_courses.dart';
 import 'package:odinlab/models/category_model.dart';
 import 'package:odinlab/models/course_model.dart';
 import 'package:odinlab/pages/dashboard_screen/all_categories.dart';
 import 'package:odinlab/pages/courses/courses.dart';
-import 'package:odinlab/widgets/course_card.dart';
+import 'package:odinlab/widgets/horizontal_course_card.dart';
 import 'package:odinlab/widgets/daily_time_goal_card.dart';
 import 'package:odinlab/widgets/section_title.dart';
 import 'package:odinlab/widgets/category_card.dart';
-import 'package:odinlab/widgets/small_course_card.dart';
+import 'package:odinlab/widgets/vertical_course_card.dart';
 
 class Explore extends StatefulWidget {
   const Explore({super.key});
@@ -30,14 +29,14 @@ class _ExploreState extends State<Explore> {
   @override
   Widget build(BuildContext context) {
     // categorizing the courses
-    CourseCategorizer categorizer = CourseCategorizer(recommendedCourses);
+    // CourseCategorizer categorizer = CourseCategorizer(recommendedCourses);
 
-    List<CourseModel> mostPopularCourses = categorizer.getMostPopularCourses();
-    List<CourseModel> recommendedCoursesList =
-        categorizer.getRecommendedCourses();
-    List<CourseModel> recentlyAddedCourses =
-        categorizer.getRecentlyAddedCourses();
-    List<CourseModel> topRatedCourses = categorizer.getTopRatedCourses();
+    // List<CourseModel> mostPopularCourses = categorizer.getMostPopularCourses();
+    // List<CourseModel> recommendedCoursesList =
+    //     categorizer.getRecommendedCourses();
+    // List<CourseModel> recentlyAddedCourses =
+    //     categorizer.getRecentlyAddedCourses();
+    // List<CourseModel> topRatedCourses = categorizer.getTopRatedCourses();
 
     return SingleChildScrollView(
       child: Column(
@@ -157,18 +156,18 @@ class _ExploreState extends State<Explore> {
             ),
           ),
           const SizedBox(height: 5),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.26,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              itemCount: recommendedCoursesList.length,
-              itemBuilder: (context, index) {
-                CourseModel course = recommendedCoursesList[index];
-                return const CourseCard();
-              },
-            ),
-          ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.height * 0.26,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     padding: const EdgeInsets.symmetric(horizontal: 15),
+          //     itemCount: recommendedCoursesList.length,
+          //     itemBuilder: (context, index) {
+          //       CourseModel course = recommendedCoursesList[index];
+          //       return const HorizontalCourseCard();
+          //     },
+          //   ),
+          // ),
 
           // most popular courses
           const SizedBox(height: 10),
@@ -180,19 +179,19 @@ class _ExploreState extends State<Explore> {
             ),
           ),
           const SizedBox(height: 5),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              itemCount: mostPopularCourses.length,
-              itemBuilder: (context, index) {
-                CourseModel course = mostPopularCourses[index];
-                return const CourseDetails();
-              },
-            ),
-          ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.height * 0.3,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.vertical,
+          //     physics: const NeverScrollableScrollPhysics(),
+          //     padding: const EdgeInsets.symmetric(horizontal: 15),
+          //     itemCount: mostPopularCourses.length,
+          //     itemBuilder: (context, index) {
+          //       CourseModel course = mostPopularCourses[index];
+          //       return const VerticalCourseCard();
+          //     },
+          //   ),
+          // ),
 
           // recently added courses
           const SizedBox(height: 10),
@@ -204,18 +203,18 @@ class _ExploreState extends State<Explore> {
             ),
           ),
           const SizedBox(height: 5),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.26,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              itemCount: recentlyAddedCourses.length,
-              itemBuilder: (context, index) {
-                CourseModel course = recentlyAddedCourses[index];
-                return const CourseCard();
-              },
-            ),
-          ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.height * 0.26,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     padding: const EdgeInsets.symmetric(horizontal: 15),
+          //     itemCount: recentlyAddedCourses.length,
+          //     itemBuilder: (context, index) {
+          //       CourseModel course = recentlyAddedCourses[index];
+          //       return const HorizontalCourseCard();
+          //     },
+          //   ),
+          // ),
 
           // top rated courses
           const SizedBox(height: 10),
@@ -227,18 +226,18 @@ class _ExploreState extends State<Explore> {
             ),
           ),
           const SizedBox(height: 5),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.26,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              itemCount: topRatedCourses.length,
-              itemBuilder: (context, index) {
-                CourseModel course = topRatedCourses[index];
-                return const CourseCard();
-              },
-            ),
-          ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.height * 0.26,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     padding: const EdgeInsets.symmetric(horizontal: 15),
+          //     itemCount: topRatedCourses.length,
+          //     itemBuilder: (context, index) {
+          //       CourseModel course = topRatedCourses[index];
+          //       return const HorizontalCourseCard();
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );

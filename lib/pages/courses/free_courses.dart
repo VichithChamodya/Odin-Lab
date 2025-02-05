@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:odinlab/widgets/small_course_card.dart';
+import 'package:odinlab/widgets/vertical_course_card.dart';
 
 class FreeCourses extends StatefulWidget {
   const FreeCourses({super.key});
@@ -16,7 +16,7 @@ class _FreeCoursesState extends State<FreeCourses> {
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       child: Column(
         children: [
-          CourseDetails(),
+          //VerticalCourseCard(),
         ],
       ),
     );

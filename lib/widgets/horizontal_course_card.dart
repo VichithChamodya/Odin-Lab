@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:odinlab/constant/colors.dart';
 
-class CourseCard extends StatelessWidget {
-  const CourseCard({super.key});
+class HorizontalCourseCard extends StatelessWidget {
+  const HorizontalCourseCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +12,21 @@ class CourseCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.44,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          gradient: const LinearGradient(
-            colors: [
-              Color(0xFF42A5F5),
-              Color(0xFF1976D2),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: kShadowColor,
-              blurRadius: 5,
-              offset: Offset(0, 2),
-            ),
-          ],
+          // gradient: const LinearGradient(
+          //   colors: [
+          //     Color(0xFF42A5F5),
+          //     Color(0xFF1976D2),
+          //   ],
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          // ),
+          // boxShadow: const [
+          //   BoxShadow(
+          //     color: kShadowColor,
+          //     blurRadius: 5,
+          //     offset: Offset(0, 2),
+          //   ),
+          // ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,8 +52,8 @@ class CourseCard extends StatelessWidget {
                     "Python for Beginners",
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      //color: Colors.white,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -64,7 +64,7 @@ class CourseCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
-                      color: kWhiteColor,
+                      color: kGreyColor,
                     ),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
@@ -83,7 +83,7 @@ class CourseCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: kWhiteColor,
+                          color: kGreyColor,
                         ),
                       ),
                       const Spacer(),

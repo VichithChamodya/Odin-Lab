@@ -13,7 +13,6 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     //user data that the provider provides this can be a user data or can be null
     final user = Provider.of<UserModel?>(context);
-    print("user: $user");
 
     if (user == null) {
       return const Authenticate();

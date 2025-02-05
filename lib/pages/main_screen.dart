@@ -78,141 +78,131 @@ class MainScreenState extends State<MainScreen> {
         ..scale(scaleFactor)
         ..rotateZ(rotationAngle), // apply rotation
       duration: const Duration(milliseconds: 300),
-      decoration: BoxDecoration(
-        color: Colors.white,
+
+      child: ClipRRect(
         borderRadius:
             isDrawerOpen ? BorderRadius.circular(30) : BorderRadius.zero,
-        boxShadow: isDrawerOpen
-            ? [
-                const BoxShadow(
-                  color: kShadowColor,
-                  blurRadius: 15,
-                  spreadRadius: 2,
-                  offset: Offset(0, 8),
+        child: Scaffold(
+          appBar: AppBar(
+            // backgroundColor: Colors.blueAccent,
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Hello Vichith,",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: kGreyColor,
+                  ),
                 ),
-              ]
-            : [],
-      ),
-      child: Scaffold(
-        appBar: AppBar(
-          // backgroundColor: Colors.blueAccent,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Hello Vichith,",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: kGreyColor,
+                Text(
+                  greeting,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    //color: kBlackColor,
+                  ),
                 ),
+              ],
+            ),
+            leading: IconButton(
+              onPressed: toggleDrawer,
+              icon: Icon(
+                isDrawerOpen ? Icons.arrow_back_ios : Icons.menu,
+                //color: kBlackColor,
               ),
-              Text(
-                greeting,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  //color: kBlackColor,
-                ),
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.search),
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: MySearchDelegate(),
+                  );
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {},
+              ),
+              Builder(
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: GestureDetector(
+                      child: Image.asset(
+                        "assets/gifs/onboarding_3.gif",
+                        width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                      onTap: () {
+                        Scaffold.of(context).openEndDrawer();
+                      },
+                    ),
+                  );
+                },
               ),
             ],
           ),
-          leading: IconButton(
-            onPressed: toggleDrawer,
-            icon: Icon(
-              isDrawerOpen ? Icons.arrow_back_ios : Icons.menu,
-              //color: kBlackColor,
-            ),
+          endDrawer: Drawer(
+            width: MediaQuery.of(context).size.width * 1,
+            child: const Bitzy(),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                showSearch(
-                  context: context,
-                  delegate: MySearchDelegate(),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.notifications),
-              onPressed: () {},
-            ),
-            Builder(
-              builder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: GestureDetector(
-                    child: Image.asset(
-                      "assets/gifs/onboarding_3.gif",
-                      width: 50,
-                      fit: BoxFit.cover,
-                    ),
-                    onTap: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-        endDrawer: Drawer(
-          width: MediaQuery.of(context).size.width * 1,
-          child: const Bitzy(),
-        ),
-        body: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          children: const [
-            Explore(),
-            Bookmarks(),
-            MyCourses(),
-            Profile(),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          selectedItemColor: kSubMainColor,
-          unselectedItemColor: kGreyColor,
-          selectedLabelStyle: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
-          onTap: (index) {
-            _pageController.animateToPage(
-              index,
-              curve: Curves.easeInOut,
-              duration: const Duration(milliseconds: 300),
-            );
-            setState(
-              () {
+          body: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
                 _currentIndex = index;
-              },
-            );
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.explore),
-              label: "Explore",
+              });
+            },
+            children: const [
+              Explore(),
+              Bookmarks(),
+              MyCourses(),
+              Profile(),
+            ],
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            selectedItemColor: kSubMainColor,
+            unselectedItemColor: kGreyColor,
+            selectedLabelStyle: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.bookmarks),
-              label: "Bookmarks",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: "My Courses",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
-            ),
-          ],
+            onTap: (index) {
+              _pageController.animateToPage(
+                index,
+                curve: Curves.easeInOut,
+                duration: const Duration(milliseconds: 300),
+              );
+              setState(
+                () {
+                  _currentIndex = index;
+                },
+              );
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.explore),
+                label: "Explore",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.bookmarks),
+                label: "Bookmarks",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: "My Courses",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: "Profile",
+              ),
+            ],
+          ),
         ),
       ),
     );

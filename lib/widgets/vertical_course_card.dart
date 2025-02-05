@@ -2,12 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/pages/courses/course_details/course_details.dart';
 
-class CourseDetails extends StatelessWidget {
-  const CourseDetails({super.key});
+class VerticalCourseCard extends StatelessWidget {
+  final String courseName;
+  final String courseAbout;
+  final String courseImage;
+  final bool isPremium;
+  final double courseRating;
+
+  const VerticalCourseCard({
+    super.key,
+    required this.courseName,
+    required this.courseAbout,
+    required this.courseImage,
+    required this.isPremium,
+    required this.courseRating,
+  });
 
   @override
   Widget build(BuildContext context) {
-    const bool isPremium = true;
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 10),
       child: GestureDetector(
@@ -45,21 +57,24 @@ class CourseDetails extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Image.asset(
-                    "assets/images/logo.png",
-                    width: 50,
-                    fit: BoxFit.cover,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      courseImage,
+                      width: 70,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   const SizedBox(width: 10),
-                  const Expanded(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
                             Text(
-                              "Python for Beginners",
-                              style: TextStyle(
+                              courseName,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                                 color: kBlackColor,
@@ -67,16 +82,16 @@ class CourseDetails extends StatelessWidget {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            Spacer(),
-                            Icon(
+                            const Spacer(),
+                            const Icon(
                               Icons.star,
                               size: 15,
                               color: Colors.yellow,
                             ),
-                            SizedBox(width: 5),
+                            const SizedBox(width: 5),
                             Text(
-                              "4.6(5.8k)",
-                              style: TextStyle(
+                              courseRating.toString(),
+                              style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                                 color: kGreyColor,
@@ -85,7 +100,7 @@ class CourseDetails extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          "Master Python programming with easy-to-follow lessons and real-world examples.",
+                          courseAbout,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
