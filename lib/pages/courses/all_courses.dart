@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/models/course_model.dart';
 import 'package:odinlab/services/course_service.dart';
@@ -27,12 +28,47 @@ class _AllCoursesState extends State<AllCourses> {
               ),
             );
           } else if (snapshot.hasError) {
-            return const Center(
-              child: Text("Error loading courses"),
+            return Center(
+              child: Column(
+                children: [
+                  const SizedBox(height: 100),
+                  // lottie animation
+                  Lottie.asset(
+                    "assets/lotties/error.json",
+                    height: 200,
+                    width: 200,
+                    fit: BoxFit.cover,
+                  ),
+                  const SizedBox(height: 15),
+                  const Text(
+                    "Oops! Something went wrong",
+                    style: TextStyle(
+                      color: kGreyColor,
+                    ),
+                  ),
+                ],
+              ),
             );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(
-              child: Text("No courses avalable"),
+            return Center(
+              child: Column(
+                children: [
+                  const SizedBox(height: 100),
+                  // lottie animation
+                  Lottie.asset(
+                    "assets/lotties/empty.json",
+                    height: 200,
+                    width: 200,
+                    fit: BoxFit.cover,
+                  ),
+                  const Text(
+                    "No courses avalable",
+                    style: TextStyle(
+                      color: kGreyColor,
+                    ),
+                  ),
+                ],
+              ),
             );
           } else {
             final List<CourseModel> courses = snapshot.data!;

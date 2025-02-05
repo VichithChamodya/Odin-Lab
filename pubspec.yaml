@@ -83,6 +83,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/lotties/
     - assets/gifs/onboarding_1.gif
     - assets/gifs/onboarding_2.gif
     - assets/gifs/onboarding_3.gif

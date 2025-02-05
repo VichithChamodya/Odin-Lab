@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:odinlab/constant/colors.dart';
 
 class CustomTabBar extends StatefulWidget {
   final List<String> tabs;
