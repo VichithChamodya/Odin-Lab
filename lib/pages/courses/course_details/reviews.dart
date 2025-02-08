@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:odinlab/constant/colors.dart';
+import 'package:odinlab/models/review_model.dart';
+import 'package:odinlab/widgets/custom_review_card.dart';
 
 class Reviews extends StatelessWidget {
-  const Reviews({super.key});
+  final List<ReviewModel> courseReviews;
+
+  const Reviews({super.key, required this.courseReviews});
 
   @override
   Widget build(BuildContext context) {
+    // calculate avarage rating and breackdown dynamically
+    final ratings = courseReviews.map((review) => review.reviewRating).toList();
+    final averageRating = ratings.reduce((a, b) => a + b) / ratings.length;
+    final Map<int, int> ratingBreakdown = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+    for (var rating in ratings) {
+      if (ratingBreakdown.containsKey(rating)) {
+        ratingBreakdown[rating] = ratingBreakdown[rating]! + 1;
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Column(
@@ -26,18 +40,18 @@ class Reviews extends StatelessWidget {
             child: Row(
               children: [
                 // average rating
-                const Column(
+                Column(
                   children: [
                     Text(
-                      "4.5",
-                      style: TextStyle(
+                      averageRating.toStringAsFixed(1),
+                      style: const TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
                       ),
                     ),
-                    SizedBox(height: 4),
-                    Text(
+                    const SizedBox(height: 4),
+                    const Text(
                       "out of 5",
                       style: TextStyle(
                         fontSize: 16,
@@ -51,13 +65,13 @@ class Reviews extends StatelessWidget {
                 // star ratings breakdown
                 Expanded(
                   child: Column(
-                    children: [
-                      _buildRatingBar(5, 80),
-                      _buildRatingBar(4, 20),
-                      _buildRatingBar(3, 10),
-                      _buildRatingBar(2, 10),
-                      _buildRatingBar(1, 5),
-                    ],
+                    children: List.generate(
+                      5,
+                      (index) => _buildRatingBar(
+                        5 - index,
+                        ratingBreakdown[5 - index] ?? 0,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -65,38 +79,19 @@ class Reviews extends StatelessWidget {
           ),
 
           // review cards
+
           Expanded(
-            child: ListView(
-              children: const [
-                _ReviewCard(
-                  name: "Alex Johnson",
-                  rating: 5,
-                  review:
-                      "This course was amazing! The content was clear, and I learned so much about design thinking.",
-                  date: "Jan 25, 2025",
-                ),
-                _ReviewCard(
-                  name: "Emily Carter",
-                  rating: 4,
-                  review:
-                      "Very informative, but I wish there were more practical examples.",
-                  date: "Jan 20, 2025",
-                ),
-                _ReviewCard(
-                  name: "Mark Lee",
-                  rating: 5,
-                  review:
-                      "Loved it! The lessons were engaging and easy to follow.",
-                  date: "Jan 18, 2025",
-                ),
-                _ReviewCard(
-                  name: "Mark Lee",
-                  rating: 5,
-                  review:
-                      "Loved it! The lessons were engaging and easy to follow.",
-                  date: "Jan 18, 2025",
-                ),
-              ],
+            child: ListView.builder(
+              itemCount: courseReviews.length,
+              itemBuilder: (context, index) {
+                final review = courseReviews[index];
+                return CustomReviewCard(
+                  name: review.reviewerName,
+                  rating: review.reviewRating,
+                  review: review.reviewText,
+                  date: review.dynamicDate,
+                );
+              },
             ),
           ),
         ],
@@ -108,11 +103,15 @@ class Reviews extends StatelessWidget {
   Widget _buildRatingBar(int star, int percentage) {
     return Row(
       children: [
-        Text(
-          "$star★",
-          style: const TextStyle(
-            fontSize: 14,
-            color: kGreyColor,
+        SizedBox(
+          width: 25,
+          child: Text(
+            "$star★",
+            textAlign: TextAlign.right,
+            style: const TextStyle(
+              fontSize: 14,
+              color: kGreyColor,
+            ),
           ),
         ),
         const SizedBox(width: 10),
@@ -126,113 +125,18 @@ class Reviews extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        Text(
-          "$percentage%",
-          style: const TextStyle(
-            fontSize: 14,
-            color: kGreyColor,
+        SizedBox(
+          width: 30,
+          child: Text(
+            "$percentage%",
+            textAlign: TextAlign.right,
+            style: const TextStyle(
+              fontSize: 14,
+              color: kGreyColor,
+            ),
           ),
         ),
       ],
-    );
-  }
-}
-
-// custom review card widget
-class _ReviewCard extends StatelessWidget {
-  final String name;
-  final int rating;
-  final String review;
-  final String date;
-
-  const _ReviewCard({
-    required this.name,
-    required this.rating,
-    required this.review,
-    required this.date,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Theme.of(context).appBarTheme.backgroundColor,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: const [
-          BoxShadow(
-            color: kLisgtShadowColor,
-            blurRadius: 10,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // reviewer info
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.blue.shade100,
-                child: Text(
-                  name[0], // get first letter of the name
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: kSubMainColor,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    date,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: kGreyColor,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 5),
-
-          // star rating
-          Row(
-            children: List.generate(
-              5,
-              (index) => Icon(
-                index < rating ? Icons.star : Icons.star_border,
-                color: kOrangeColor,
-                size: 20,
-              ),
-            ),
-          ),
-          const SizedBox(height: 5),
-
-          // review text
-          Text(
-            review,
-            style: const TextStyle(
-              fontSize: 12,
-              height: 1.5,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -25,6 +25,7 @@ class AllCourses extends StatelessWidget {
             return const Center(
               child: CircularProgressIndicator(
                 color: kSubMainColor,
+                backgroundColor: kGreyColor,
               ),
             );
           } else if (snapshot.hasError) {
@@ -105,6 +106,7 @@ class AllCourses extends StatelessWidget {
               itemBuilder: (context, index) {
                 final CourseModel course = courses[index];
                 return VerticalCourseCard(
+                  courseId: course.courseId,
                   courseName: course.courseName,
                   courseAbout: course.courseAbout,
                   courseImage: course.courseImage,

@@ -91,7 +91,7 @@ class PremiumCourses extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                     Text(
-                      "No ${categoryName.toLowerCase()} free courses yet..\nstay tuned !",
+                      "No ${categoryName.toLowerCase()} premium courses yet..\nstay tuned !",
                       style: const TextStyle(
                         color: kGreyColor,
                       ),
@@ -107,6 +107,7 @@ class PremiumCourses extends StatelessWidget {
               itemBuilder: (context, index) {
                 final CourseModel course = courses[index];
                 return VerticalCourseCard(
+                  courseId: course.courseId,
                   courseName: course.courseName,
                   courseAbout: course.courseAbout,
                   courseImage: course.courseImage,

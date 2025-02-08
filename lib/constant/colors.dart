@@ -22,7 +22,8 @@ const Color kMainTextColor = Color(0xFF448AFF);
 const Color kSubTextColor = Color(0xFF448AFF);
 const Color kSelectionColor = Color(0x7C4489FF);
 
-// gradient colors
+// rating colors
+const Color kRatingColor = Colors.amber;
 
 // shadow colors
 const Color kShadowColor = Color(0x50000000);

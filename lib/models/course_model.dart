@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:odinlab/models/lesson_model.dart';
+import 'package:odinlab/models/review_model.dart';
+
 class CourseModel {
   final String courseId;
   final String courseCategory;
@@ -9,14 +12,14 @@ class CourseModel {
   final String courseDescription2;
   final String courseDescription3;
   final String courseImage;
-  final List courseLessons;
+  final List<LessonModel> courseLessons;
   final List courseKeyFeatures;
   final int courseEnrolledStudents;
   final DateTime courseAddedDate;
   final bool isPremium;
   final double courseFee;
   final double courseRating;
-  //final Map courseReviews;
+  final List<ReviewModel> courseReviews;
 
   CourseModel({
     required this.courseId,
@@ -34,11 +37,16 @@ class CourseModel {
     required this.isPremium,
     required this.courseFee,
     required this.courseRating,
-    //required this.courseReviews,
+    required this.courseReviews,
   });
 
   // method to convert the firebase document in to a dart object
-  factory CourseModel.fromJson(Map<String, dynamic> data, String id) {
+  factory CourseModel.fromJson(
+    Map<String, dynamic> data,
+    String id,
+    List<LessonModel> lessons,
+    List<ReviewModel> reviews,
+  ) {
     return CourseModel(
       courseId: id,
       courseCategory: data["courseCategory"] ?? "",
@@ -48,7 +56,7 @@ class CourseModel {
       courseDescription2: data["courseDescription2"] ?? "",
       courseDescription3: data["courseDescription3"] ?? "",
       courseImage: data["courseImage"] ?? "",
-      courseLessons: List<String>.from(data["courseLessons"] ?? []),
+      courseLessons: lessons,
       courseKeyFeatures: List<String>.from(data["courseKeyFeatures"] ?? []),
       courseEnrolledStudents: data["courseEnrolledStudents"] ?? 0,
       courseAddedDate: data["courseAddedDate"] != null
@@ -57,7 +65,7 @@ class CourseModel {
       isPremium: data["courseIsPremium"] ?? false,
       courseFee: data["courseFee"]?.toDouble() ?? 0.0,
       courseRating: data["courseRating"]?.toDouble() ?? 0.0,
-      //courseReviews: data["courseReviews"],
+      courseReviews: reviews,
     );
   }
 }

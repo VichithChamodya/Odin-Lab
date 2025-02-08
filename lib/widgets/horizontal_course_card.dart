@@ -2,7 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:odinlab/constant/colors.dart';
 
 class HorizontalCourseCard extends StatelessWidget {
-  const HorizontalCourseCard({super.key});
+  final String courseName;
+  final String courseAbout;
+  final String courseImage;
+  final bool isPremium;
+  final double courseRating;
+
+  const HorizontalCourseCard({
+    super.key,
+    required this.courseName,
+    required this.courseAbout,
+    required this.courseImage,
+    required this.isPremium,
+    required this.courseRating,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +27,7 @@ class HorizontalCourseCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           // gradient: const LinearGradient(
           //   colors: [
-          //     Color(0xFF42A5F5),
-          //     Color(0xFF1976D2),
+          //     kGreenColor, kSubMainColor
           //   ],
           //   begin: Alignment.topLeft,
           //   end: Alignment.bottomRight,
@@ -32,12 +44,9 @@ class HorizontalCourseCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
-              ),
+              borderRadius: BorderRadius.circular(15),
               child: Image.asset(
-                "assets/images/Untitled (1).png",
+                courseImage,
                 width: double.infinity,
                 height: 80,
                 fit: BoxFit.cover,
@@ -48,25 +57,25 @@ class HorizontalCourseCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Python for Beginners",
-                    style: TextStyle(
+                  Text(
+                    courseName,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      //color: Colors.white,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    "Master Python programming with easy-to-follow lessons and real-world examples.",
-                    style: TextStyle(
+                  Text(
+                    courseAbout,
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                       color: kGreyColor,
                     ),
                     maxLines: 3,
+                    textAlign: TextAlign.justify,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 5),
@@ -78,9 +87,9 @@ class HorizontalCourseCard extends StatelessWidget {
                         color: Colors.yellow,
                       ),
                       const SizedBox(width: 5),
-                      const Text(
-                        "4.6(5.8k)",
-                        style: TextStyle(
+                      Text(
+                        courseRating.toString(),
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: kGreyColor,

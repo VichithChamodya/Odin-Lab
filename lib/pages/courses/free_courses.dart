@@ -107,6 +107,7 @@ class FreeCourses extends StatelessWidget {
               itemBuilder: (context, index) {
                 final CourseModel course = courses[index];
                 return VerticalCourseCard(
+                  courseId: course.courseId,
                   courseName: course.courseName,
                   courseAbout: course.courseAbout,
                   courseImage: course.courseImage,

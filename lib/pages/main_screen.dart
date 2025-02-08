@@ -147,7 +147,7 @@ class MainScreenState extends State<MainScreen> {
             ],
           ),
           endDrawer: Drawer(
-            width: MediaQuery.of(context).size.width * 1,
+            width: MediaQuery.of(context).size.width * 0.8,
             child: const Bitzy(),
           ),
           body: PageView(

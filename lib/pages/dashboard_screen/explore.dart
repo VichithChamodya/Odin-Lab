@@ -207,18 +207,25 @@ class _ExploreState extends State<Explore> {
             ),
           ),
           const SizedBox(height: 5),
-          // SizedBox(
-          //   height: MediaQuery.of(context).size.height * 0.26,
-          //   child: ListView.builder(
-          //     scrollDirection: Axis.horizontal,
-          //     padding: const EdgeInsets.symmetric(horizontal: 15),
-          //     itemCount: recentlyAddedCourses.length,
-          //     itemBuilder: (context, index) {
-          //       CourseModel course = recentlyAddedCourses[index];
-          //       return const HorizontalCourseCard();
-          //     },
-          //   ),
-          // ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.26,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return const HorizontalCourseCard(
+                  courseName: "courseName",
+                  courseAbout:
+                      "courseAbout biuvwb ibwvb vnbiwv ubuowasbv uhqwvuw viuewhvue vnuiehv iwdboic owvciev nvuieibvue noieivi jneiv",
+                  courseImage:
+                      "assets/images/Anime girl headphones desktop computer screen.jpg",
+                  isPremium: true,
+                  courseRating: 5.2,
+                );
+              },
+            ),
+          ),
 
           // top rated courses
           const SizedBox(height: 10),

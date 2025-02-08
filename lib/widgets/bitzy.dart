@@ -137,10 +137,6 @@ class BitzyState extends State<Bitzy> {
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
             boxShadow: [
               BoxShadow(
                 color: kShadowColor,
@@ -222,7 +218,7 @@ class BitzyState extends State<Bitzy> {
                     gradient: LinearGradient(
                       colors: message["isUser"]
                           ? [kMainColor, kSubMainColor]
-                          : [kWhiteColor, kWhiteColor],
+                          : [kBlackColor, kBlackColor],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                     ),
@@ -247,7 +243,7 @@ class BitzyState extends State<Bitzy> {
                   child: Text(
                     message['text'],
                     style: TextStyle(
-                      color: message['isUser'] ? Colors.white : Colors.black,
+                      color: message['isUser'] ? kWhiteColor : kWhiteColor,
                       fontSize: 16,
                     ),
                   ),
