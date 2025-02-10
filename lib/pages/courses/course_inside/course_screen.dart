@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
 import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/services/course_service.dart';
+import 'package:odinlab/widgets/custom_video_player.dart';
+import 'package:odinlab/widgets/test_player.dart';
 
 class CourseScreen extends StatefulWidget {
   final String courseId;
@@ -81,32 +84,8 @@ class _CourseScreenState extends State<CourseScreen> {
               (course) => course.courseId == widget.courseId,
             );
 
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // course details
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          course.courseName,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            return SimpleVideoPlayer(
+              videoUrl: course.courseLessons.first.lessonVideo,
             );
           }
         },

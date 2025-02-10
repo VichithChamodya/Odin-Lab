@@ -48,6 +48,7 @@ dependencies:
   cloud_firestore: ^5.6.2
   flutter_svg: ^2.0.17
   lottie: ^3.3.1
+  video_player: ^2.9.2
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lotties/
+    - assets/videos/Clear_-_Lyrics___WhatsApp_Status___Lyrics_Status___Lyrics_Shorts___5LAY(720p).mp4
     - assets/gifs/onboarding_1.gif
     - assets/gifs/onboarding_2.gif
     - assets/gifs/onboarding_3.gif
