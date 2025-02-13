@@ -21,22 +21,25 @@ class Reviews extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Student Reviews",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Student Reviews",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
           const SizedBox(height: 15),
 
           // rating summary
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
             child: Row(
               children: [
                 // average rating
@@ -79,7 +82,6 @@ class Reviews extends StatelessWidget {
           ),
 
           // review cards
-
           Expanded(
             child: ListView.builder(
               itemCount: courseReviews.length,

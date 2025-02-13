@@ -174,115 +174,112 @@ class CourseDetailPage extends StatelessWidget {
                             topRight: Radius.circular(30),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            children: [
-                              // course details section
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // hanger
-                                    Center(
-                                      child: Container(
-                                        height: 6,
-                                        width: 60,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: Colors.grey.shade300,
-                                        ),
+                        child: Column(
+                          children: [
+                            // course details section
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 20,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // hanger
+                                  Center(
+                                    child: Container(
+                                      height: 6,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.grey.shade300,
                                       ),
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        const Icon(
-                                          Icons.star,
-                                          color: kRatingColor,
-                                          size: 14,
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                          "${course.courseRating.toString()} (365 reviews)",
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                            color: kGreyColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      course.courseName,
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      const Icon(
+                                        Icons.star,
+                                        color: kRatingColor,
+                                        size: 14,
                                       ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        "${course.courseRating.toString()} (365 reviews)",
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: kGreyColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    course.courseName,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    const SizedBox(height: 8),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        CourseDetailsStatusItem(
-                                          statusIcon: Icons.category,
-                                          statusText: course.courseCategory,
-                                        ),
-                                        CourseDetailsStatusItem(
-                                          statusIcon: Icons.play_lesson,
-                                          statusText:
-                                              "${course.courseLessons.length} Lessons",
-                                        ),
-                                        const CourseDetailsStatusItem(
-                                          statusIcon: Icons.school,
-                                          statusText: "Certificate",
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      CourseDetailsStatusItem(
+                                        statusIcon: Icons.category,
+                                        statusText: course.courseCategory,
+                                      ),
+                                      CourseDetailsStatusItem(
+                                        statusIcon: Icons.play_lesson,
+                                        statusText:
+                                            "${course.courseLessons.length} Lessons",
+                                      ),
+                                      const CourseDetailsStatusItem(
+                                        statusIcon: Icons.school,
+                                        statusText: "Certificate",
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
+                            ),
 
-                              const Divider(),
+                            const Divider(),
 
-                              // tab bar
-                              Expanded(
-                                child: CustomTabBar(
-                                  tabs: const [
-                                    "About",
-                                    "Hands-on lessons",
-                                    "What students say",
-                                  ],
-                                  tabViews: [
-                                    About(
-                                      courseAbout: course.courseAbout,
-                                      courseDescription1:
-                                          course.courseDescription1,
-                                      courseKeyFeatures:
-                                          course.courseKeyFeatures,
-                                      courseImage: course.courseImage,
-                                      courseDescription2:
-                                          course.courseDescription2,
-                                      courseDescription3:
-                                          course.courseDescription3,
-                                    ),
-                                    Lessons(
-                                      courseLessons: course.courseLessons,
-                                    ),
-                                    Reviews(
-                                      courseReviews: course.courseReviews,
-                                    )
-                                  ],
-                                  indicatorColor: kSubMainColor,
-                                ),
+                            // tab bar
+                            Expanded(
+                              child: CustomTabBar(
+                                tabs: const [
+                                  "About",
+                                  "Hands-on lessons",
+                                  "What students say",
+                                ],
+                                tabViews: [
+                                  About(
+                                    courseAbout: course.courseAbout,
+                                    courseDescription1:
+                                        course.courseDescription1,
+                                    courseKeyFeatures: course.courseKeyFeatures,
+                                    courseImage: course.courseImage,
+                                    courseDescription2:
+                                        course.courseDescription2,
+                                    courseDescription3:
+                                        course.courseDescription3,
+                                  ),
+                                  Lessons(
+                                    courseLessons: course.courseLessons,
+                                  ),
+                                  Reviews(
+                                    courseReviews: course.courseReviews,
+                                  )
+                                ],
+                                indicatorColor: kSubMainColor,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

@@ -37,66 +37,81 @@ class Lessons extends StatelessWidget {
         ),
       );
     }
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: courseLessons.length,
-      itemBuilder: (context, index) {
-        final lesson = courseLessons[index];
-        return Container(
-          height: 55,
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: const Color(0x180095FF),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Lessons Overview",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 18,
-                  backgroundColor: Colors.blue.shade200,
-                  child: Text(
-                    "${index + 1}",
-                    style: const TextStyle(
-                      color: kSubMainColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: courseLessons.length,
+            itemBuilder: (context, index) {
+              final lesson = courseLessons[index];
+              return Container(
+                height: 55,
+                margin: const EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0x180095FF),
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
                     children: [
-                      Text(
-                        lesson.lessonName,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
+                      CircleAvatar(
+                        radius: 18,
+                        backgroundColor: Colors.blue.shade200,
+                        child: Text(
+                          "${index + 1}",
+                          style: const TextStyle(
+                            color: kSubMainColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      const Text(
-                        "5 Min",
-                        style: TextStyle(
-                          color: kGreyColor,
-                          fontSize: 12,
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              lesson.lessonName,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                              ),
+                            ),
+                            const Text(
+                              "5 Min",
+                              style: TextStyle(
+                                color: kGreyColor,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
+                      const Icon(
+                        Icons.play_circle_fill,
+                        color: kSubMainColor,
                       ),
                     ],
                   ),
                 ),
-                const Icon(
-                  Icons.play_circle_fill,
-                  color: kSubMainColor,
-                ),
-              ],
-            ),
+              );
+            },
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
