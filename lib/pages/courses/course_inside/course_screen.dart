@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:odinlab/constant/colors.dart';
+import 'package:odinlab/models/lesson_model.dart';
+import 'package:odinlab/pages/courses/course_inside/complete_screen.dart';
 import 'package:odinlab/services/course_service.dart';
+import 'package:odinlab/widgets/custom_button.dart';
 import 'package:odinlab/widgets/custom_video_player.dart';
-import 'package:odinlab/widgets/test_player.dart';
 
 class CourseScreen extends StatefulWidget {
   final String courseId;
@@ -21,6 +23,8 @@ class CourseScreen extends StatefulWidget {
 }
 
 class _CourseScreenState extends State<CourseScreen> {
+  int _currentPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +49,6 @@ class _CourseScreenState extends State<CourseScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 100),
-                  // lottie animation
                   Lottie.asset(
                     "assets/lotties/error.json",
                     height: 200,
@@ -67,7 +70,6 @@ class _CourseScreenState extends State<CourseScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 100),
-                  // lottie animation
                   Lottie.asset(
                     "assets/lotties/empty.json",
                     height: 200,
@@ -84,8 +86,120 @@ class _CourseScreenState extends State<CourseScreen> {
               (course) => course.courseId == widget.courseId,
             );
 
-            return SimpleVideoPlayer(
-              videoUrl: course.courseLessons.first.lessonVideo,
+            final List<LessonModel> lessons = course.courseLessons;
+            final int totalLessons = lessons.length;
+
+            // get the current lesson based on the page
+            final currentLesson = lessons[_currentPage];
+
+            return Column(
+              children: [
+                Expanded(
+                  child: CustomVideoPlayer(videoUrl: currentLesson.lessonVideo),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    currentLesson.lessonName,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                // pagination controls
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _currentPage > 0
+                          ? Expanded(
+                              child: CustomButton(
+                                buttonText: "Previous",
+                                buttonColor1: kGreyColor,
+                                buttonColor2: kGreyColor,
+                                onPressed: _currentPage > 0
+                                    ? () {
+                                        setState(() {
+                                          _currentPage--;
+                                        });
+                                      }
+                                    : null,
+                              ),
+                            )
+                          : const SizedBox(),
+                      // IconButton(
+                      //   icon: Icon(
+                      //     Icons.arrow_back,
+                      //     color: _currentPage > 0 ? kSubMainColor : kGreyColor,
+                      //   ),
+                      //   onPressed: _currentPage > 0
+                      //       ? () {
+                      //           setState(() {
+                      //             _currentPage--;
+                      //           });
+                      //         }
+                      //       : null,
+                      // ),
+                      Expanded(
+                        child: Text(
+                          'Lesson ${_currentPage + 1} of $totalLessons',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: kGreyColor,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: CustomButton(
+                          buttonText: _currentPage < totalLessons - 1
+                              ? "Next"
+                              : "Finish",
+                          buttonColor1: _currentPage < totalLessons - 1
+                              ? kMainColor
+                              : Colors.green,
+                          buttonColor2: _currentPage < totalLessons - 1
+                              ? kSubMainColor
+                              : kGreenColor,
+                          onPressed: _currentPage < totalLessons - 1
+                              ? () {
+                                  setState(() {
+                                    _currentPage++;
+                                  });
+                                }
+                              : () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CompleteScreen(),
+                                    ),
+                                  );
+                                },
+                        ),
+                      ),
+                      // IconButton(
+                      //   icon: Icon(
+                      //     Icons.arrow_forward,
+                      //     color: _currentPage < totalLessons - 1
+                      //         ? kSubMainColor
+                      //         : kGreyColor,
+                      //   ),
+                      //   onPressed: _currentPage < totalLessons - 1
+                      //       ? () {
+                      //           setState(() {
+                      //             _currentPage++;
+                      //           });
+                      //         }
+                      //       : null,
+                      // ),
+                    ],
+                  ),
+                ),
+              ],
             );
           }
         },

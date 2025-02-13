@@ -160,6 +160,7 @@ class MainScreenState extends State<MainScreen> {
             children: const [
               Explore(),
               Bookmarks(),
+              Scaffold(),
               MyCourses(),
               Profile(),
             ],
@@ -168,6 +169,7 @@ class MainScreenState extends State<MainScreen> {
             currentIndex: _currentIndex,
             selectedItemColor: kSubMainColor,
             unselectedItemColor: kGreyColor,
+            showUnselectedLabels: true,
             selectedLabelStyle: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -192,6 +194,10 @@ class MainScreenState extends State<MainScreen> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.bookmarks),
                 label: "Bookmarks",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.perm_data_setting_rounded),
+                label: "Tools",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.favorite),

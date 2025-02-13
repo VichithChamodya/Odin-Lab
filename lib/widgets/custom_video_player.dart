@@ -1,96 +1,81 @@
 import 'package:flutter/material.dart';
+import 'package:chewie/chewie.dart';
+import 'package:odinlab/constant/colors.dart';
 import 'package:video_player/video_player.dart';
 
 class CustomVideoPlayer extends StatefulWidget {
   final String videoUrl;
-  const CustomVideoPlayer({super.key, required this.videoUrl});
+
+  const CustomVideoPlayer({Key? key, required this.videoUrl}) : super(key: key);
 
   @override
   State<CustomVideoPlayer> createState() => _CustomVideoPlayerState();
 }
 
 class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
-  // video controller
-  late VideoPlayerController _controller;
-  bool _isInitialized = false;
-  bool _isPlaying = false;
-
-  Future<void> _initializeVideo() async {
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
-      ..addListener(() {
-        if (_controller.value.isInitialized && !_isInitialized) {
-          setState(() {
-            _isInitialized = true;
-          });
-        }
-      })
-      ..setLooping(false)
-      ..initialize().then((_) {
-        _controller.play();
-        setState(() {
-          _isPlaying = true;
-        });
-      }).catchError((error) {
-        print("Error: $error");
-      });
-  }
+  late VideoPlayerController _videoPlayerController;
+  ChewieController? _chewieController;
 
   @override
   void initState() {
     super.initState();
-    _initializeVideo();
-  }
 
-  // play and pause video
-  void _playPauseVideo() {
-    if (_isPlaying) {
-      _controller.pause();
-    } else {
-      _controller.play();
-    }
-    setState(() {
-      _isPlaying = !_isPlaying;
-    });
+    // initialize the video player
+    _videoPlayerController = VideoPlayerController.networkUrl(
+      Uri.parse(widget.videoUrl),
+    );
+
+    // wait for the video player to initialize
+    _videoPlayerController.initialize().then(
+      (_) {
+        setState(
+          () {
+            // initialize the chewie controller with video options
+            _chewieController = ChewieController(
+              videoPlayerController: _videoPlayerController,
+              autoPlay: false,
+              looping: false,
+              aspectRatio: _videoPlayerController.value.aspectRatio,
+              // player ui
+              materialProgressColors: ChewieProgressColors(
+                playedColor: kSubMainColor,
+                handleColor: kOrangeColor,
+                backgroundColor: kDarkGreyColor,
+                bufferedColor: kWhiteColor,
+              ),
+              errorBuilder: (context, errorMessage) {
+                return Center(
+                  child: Text(
+                    'Error: $errorMessage',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              },
+            );
+          },
+        );
+      },
+    );
   }
 
   @override
   void dispose() {
+    _chewieController?.dispose();
+    _videoPlayerController.dispose();
     super.dispose();
-    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Theme.of(context).appBarTheme.backgroundColor,
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          _isInitialized
-              ? AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: VideoPlayer(
-                    VideoPlayerController.networkUrl(Uri.parse(
-                        "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4")),
-                  ),
-                )
-              : const Center(
-                  child: CircularProgressIndicator(),
-                ),
-
-          // play and pause button
-          Positioned(
-            child: IconButton(
-              icon: Icon(
-                _isPlaying ? Icons.pause : Icons.play_arrow,
+    return Scaffold(
+      body: Center(
+        child: _chewieController != null &&
+                _chewieController!.videoPlayerController.value.isInitialized
+            ? Chewie(controller: _chewieController!)
+            : const CircularProgressIndicator(
+                color: kSubMainColor,
+                backgroundColor: kGreyColor,
               ),
-              onPressed: _playPauseVideo,
-            ),
-          ),
-        ],
       ),
     );
   }

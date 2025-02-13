@@ -6,7 +6,7 @@ class CustomButton extends StatelessWidget {
   final Color buttonColor1;
   final Color buttonColor2;
   final Color buttonTextColor;
-  final Function() onPressed;
+  final Function()? onPressed;
 
   const CustomButton({
     super.key,
@@ -15,6 +15,7 @@ class CustomButton extends StatelessWidget {
     required this.buttonColor2,
     this.buttonTextColor = kWhiteColor,
     required this.onPressed,
+    CircularProgressIndicator? child,
   });
 
   @override

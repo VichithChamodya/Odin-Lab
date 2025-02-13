@@ -14,14 +14,20 @@ class Bookmarks extends StatelessWidget {
       padding: EdgeInsets.only(top: 10),
       child: CustomTabBar(
         tabs: [
-          //"All Courses",
+          "All Courses",
           "Free Courses",
           "Premium Courses",
         ],
         tabViews: [
-          //AllCourses(),
-          //FreeCourses(),
-          //PremiumCourses(),
+          AllCourses(
+            categoryName: "ABC",
+          ),
+          FreeCourses(
+            categoryName: "ABC",
+          ),
+          PremiumCourses(
+            categoryName: "ABC",
+          ),
         ],
         indicatorColor: kSubMainColor,
       ),
