@@ -25,7 +25,7 @@ class CustomReviewCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         boxShadow: const [
           BoxShadow(
-            color: kLisgtShadowColor,
+            color: kLightShadowColor,
             blurRadius: 10,
             offset: Offset(0, 4),
           ),

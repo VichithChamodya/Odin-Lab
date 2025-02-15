@@ -27,4 +27,4 @@ const Color kRatingColor = Colors.amber;
 
 // shadow colors
 const Color kShadowColor = Color(0x50000000);
-const Color kLisgtShadowColor = Color(0x2A000000);
+const Color kLightShadowColor = Color(0x2A000000);

@@ -6,8 +6,9 @@ import 'package:odinlab/constant/colors.dart';
 import 'package:odinlab/widgets/bitzy.dart';
 
 // dashboard screens
-import 'package:odinlab/pages/dashboard_screen/bookmarks.dart';
 import 'package:odinlab/pages/dashboard_screen/explore.dart';
+import 'package:odinlab/pages/dashboard_screen/bookmarks.dart';
+import 'package:odinlab/pages/dashboard_screen/tools.dart';
 import 'package:odinlab/pages/dashboard_screen/my_courses.dart';
 import 'package:odinlab/pages/dashboard_screen/profile.dart';
 
@@ -147,6 +148,7 @@ class MainScreenState extends State<MainScreen> {
             ],
           ),
           endDrawer: Drawer(
+            shape: const LinearBorder(),
             width: MediaQuery.of(context).size.width * 0.8,
             child: const Bitzy(),
           ),
@@ -160,7 +162,7 @@ class MainScreenState extends State<MainScreen> {
             children: const [
               Explore(),
               Bookmarks(),
-              Scaffold(),
+              Tools(),
               MyCourses(),
               Profile(),
             ],

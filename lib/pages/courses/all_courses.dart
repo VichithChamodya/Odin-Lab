@@ -22,10 +22,11 @@ class AllCourses extends StatelessWidget {
         stream: CourseService().getCourse(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: kSubMainColor,
-                backgroundColor: kGreyColor,
+            return Center(
+              child: Lottie.asset(
+                "assets/lotties/loader.json",
+                height: 80,
+                fit: BoxFit.cover,
               ),
             );
           } else if (snapshot.hasError) {

@@ -218,7 +218,10 @@ class BitzyState extends State<Bitzy> {
                     gradient: LinearGradient(
                       colors: message["isUser"]
                           ? [kMainColor, kSubMainColor]
-                          : [kBlackColor, kBlackColor],
+                          : [
+                              Theme.of(context).appBarTheme.backgroundColor!,
+                              Theme.of(context).appBarTheme.backgroundColor!,
+                            ],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                     ),
@@ -255,14 +258,17 @@ class BitzyState extends State<Bitzy> {
 
         // Input field
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-            BoxShadow(
-              color: kShadowColor,
-              blurRadius: 8,
-              offset: Offset(0, 4),
-            ),
-          ]),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          decoration: BoxDecoration(
+            color: Theme.of(context).appBarTheme.backgroundColor,
+            boxShadow: const [
+              BoxShadow(
+                color: kShadowColor,
+                blurRadius: 8,
+                offset: Offset(0, 5),
+              ),
+            ],
+          ),
           child: Row(
             children: [
               Expanded(
@@ -272,12 +278,11 @@ class BitzyState extends State<Bitzy> {
                   onSubmitted: _sendMessage,
                   decoration: InputDecoration(
                     hintText: "Message Bitzy...",
-                    hintStyle: const TextStyle(color: Colors.grey),
+                    hintStyle: const TextStyle(color: kGreyColor),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
                       borderSide: BorderSide.none,
                     ),
-                    fillColor: Colors.grey[200],
                     filled: true,
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 20,

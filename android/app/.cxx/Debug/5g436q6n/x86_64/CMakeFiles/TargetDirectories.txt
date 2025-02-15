@@ -1,0 +1,2 @@
+C:/Users/Vichith/Desktop/Futter Projects/odinlab/android/app/.cxx/Debug/5g436q6n/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Vichith/Desktop/Futter Projects/odinlab/android/app/.cxx/Debug/5g436q6n/x86_64/CMakeFiles/rebuild_cache.dir

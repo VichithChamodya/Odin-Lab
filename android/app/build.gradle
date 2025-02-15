@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.example.odinlab"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34 // flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -23,7 +23,7 @@ android {
     defaultConfig {
         applicationId = "com.example.odinlab"
         minSdk = 23
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 33 // flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
