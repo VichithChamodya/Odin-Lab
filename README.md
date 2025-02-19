@@ -26,7 +26,7 @@ Odin Labs consists of two main components:
 2. **Admin Panel**: A web-based dashboard for course management and content delivery
 
 <div align="center">
-<img src="/api/placeholder/800/400" alt="System Architecture" />
+<!--<img src="/api/placeholder/800/400" alt="System Architecture" />-->
 </div>
 
 ## ✨ Key Features
@@ -185,7 +185,7 @@ dependencies:
 ## 💫 App Navigation
 
 <div align="center">
-<img src="/api/placeholder/800/200" alt="Navigation Structure" />
+<!--<img src="/api/placeholder/800/200" alt="Navigation Structure" />-->
 </div>
 
 The application features five main sections:
